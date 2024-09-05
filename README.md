@@ -15,6 +15,12 @@ With this template you can create your [Shower](https://shwr.me/) presentation i
 2. Start development server: `yarn dev` or `npm run dev`
 3. Open `index.mdx` and start adding your content! 
 
+## Deploying to gh-pages
+
+1. Create gh-pages branch
+2. Ensure Repository Permissions<br/>
+   Go to your repository's **Settings**. Navigate to **Actions > General**. Ensure that the **Workflow permissions** section is set to "Read and write permissions".
+
 ## Editing content
 
 Each new slide has to start with `<h2>` heading. If you don't need an actual heading, just leave it blank. Check index.mdx for markup examples.
