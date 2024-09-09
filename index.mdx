@@ -551,6 +551,9 @@ Slides: v1 #12
 <Cover src="slides/v1-18.png" alt=""/>
 
 <!--
+
+v8 s1
+"Welcome to an in-depth exploration of design systems, the cornerstone of modern user interface development. In this presentation, we'll delve into the world of design systems, understanding their importance, components, and impact on the design and development process. From bridging the gap between designers and developers to ensuring accessibility and scalability, we'll cover all aspects of design systems that are crucial for creating consistent, efficient, and user-friendly digital products. Get ready to unlock the power of design systems and revolutionize your approach to UI design and development."
 -->
 
 ## What is a Design System?
@@ -575,6 +578,76 @@ Slides: v1 #12
 <Cover src="slides/v1-19.png" alt=""/>
 
 <!--
+
+v8 s2:
+"What is a Design System?
+Reusable Components
+A collection of UI elements like buttons, forms, and cards that can be used across multiple projects and platforms.
+Design Patterns
+Standardized solutions to common design problems, ensuring consistency in user interactions and layouts.
+Guidelines
+Clear instructions on how to use components and patterns, including best practices for accessibility and usability.
+Single Source of Truth
+A centralized resource that serves as the definitive reference for all design and development decisions within an organization."
+-->
+
+## The Importance of Design Systems
+{ .no-title }
+
+<Cover src="slides/v8-3.png" alt=""/>
+
+<!--
+-->
+
+## Design Tokens: The Building Blocks
+{ .no-title }
+
+<Cover src="slides/v8-4.png" alt=""/>
+
+<!--
+-->
+
+## UI Components: The Building Blocks of Interfaces
+{ .no-title }
+
+<Cover src="slides/v8-5.png" alt=""/>
+
+<!--
+-->
+
+## Design Patterns: Solving Common UI Challenges
+{ .no-title }
+
+<Cover src="slides/v8-6.png" alt=""/>
+
+<!--
+v8, s6:
+"Layout Structures
+Standardized arrangements of UI elements, such as grid systems and responsive layouts, that ensure consistency across different screen sizes and devices.
+Interaction Patterns
+Common user behaviors and expectations, like hover effects, drag-and-drop functionality, and scrolling behaviors, that are implemented consistently throughout the interface.
+Data Visualization
+Guidelines for presenting complex information in easily digestible formats, including charts, graphs, and infographics.
+Error Handling
+Consistent approaches to displaying and resolving errors, including form validation, error messages, and recovery options."
+-->
+
+## Design System Guidelines: Ensuring Proper Implementation
+{ .no-title }
+
+<Cover src="slides/v8-7.png" alt=""/>
+
+<!--
+
+v8, s7:
+"Usage Rules
+Clear instructions on when and how to use specific components and patterns, including do's and don'ts to maintain consistency and effectiveness.
+Accessibility Standards
+Detailed requirements for ensuring that all UI elements are accessible to users with disabilities, including color contrast ratios, keyboard navigation, and screen reader compatibility.
+Responsive Design Guidelines
+Principles for adapting layouts and components to different screen sizes and devices, ensuring a consistent experience across platforms.
+Brand Voice and Tone
+Guidelines for maintaining a consistent brand personality in all textual elements, including microcopy, headings, and error messages."
 -->
 
 ## Examples of Design Systems
@@ -585,12 +658,39 @@ Slides: v1 #12
 <!--
 -->
 
+## Design System Catalogs: Inspiration and Resources
+{ .no-title }
+
+<Cover src="slides/v8-9.png" alt=""/>
+
+<!--
+v8, s9:
+"Design Systems Surf
+A curated collection of design systems from various companies and organizations. It provides a valuable resource for designers and developers looking to explore different approaches to design system creation and implementation.
+Design Systems Surf
+Component Gallery
+An extensive library of UI components from various design systems. It allows users to compare how different design systems approach common UI elements, providing inspiration and insights for component design.
+Component Gallery
+Defining Components
+A guide on how to effectively use design system catalogs when defining components for your own system. It provides strategies for analyzing existing solutions and adapting them to your specific needs.
+Defining Components Guide"
+-->
+
 ## Design-Development Disconnect
 { .no-title }
 
 <Cover src="slides/v1-21.png" alt=""/>
 
 <!--
+v8, s11:
+"Different Tools and Workflows
+Designers often use tools like Sketch or Figma, while developers work in code editors, leading to potential discrepancies in how designs are interpreted and implemented.
+Inconsistent Interpretations
+Without clear guidelines, developers may interpret design elements differently, resulting in variations from the original design intent.
+Communication Challenges
+Designers and developers may use different terminology or have different priorities, leading to misunderstandings and inefficiencies in the development process.
+Time Lost in Back-and-Forth
+Frequent clarifications and revisions due to misalignment can significantly slow down the development process and delay project timelines."
 -->
 
 ## Challenges in Design-Development Collaboration
@@ -599,6 +699,15 @@ Slides: v1 #12
 <Cover src="slides/v1-22.png" alt=""/>
 
 <!--
+v8, s12:
+"Translating Static Designs to Interactive Components
+Developers must interpret static mockups and transform them into fully functional, interactive elements, which can lead to discrepancies in behavior and appearance.
+Maintaining Consistency Across Iterations
+As designs evolve, ensuring that all instances of a component are updated consistently across the project can be challenging without a centralized system.
+Handling Edge Cases and States
+Designers may not always account for all possible states of a component (e.g., loading, error, empty), leaving developers to make decisions that could deviate from the intended design.
+Ensuring Accessibility in Implementation
+Translating accessibility requirements from design to code can be complex, especially when not explicitly defined in the initial designs."
 -->
 
 ## Design Systems as a Collaborative Solution
@@ -607,14 +716,94 @@ Slides: v1 #12
 <Cover src="slides/v1-23.png" alt=""/>
 
 <!--
+v8, s13:
+"Shared Language
+Design systems provide a common vocabulary for designers and developers, reducing misunderstandings and improving communication.
+Central Source of Truth
+A single, authoritative reference point ensures that all team members are working from the same set of standards and components.
+Living Documentation
+Up-to-date documentation of components and patterns helps maintain consistency and reduces the need for constant clarification.
+Streamlined Handoff
+Clear guidelines and pre-built components facilitate a smoother transition from design to development, reducing friction and errors."
 -->
 
+
+
 ## Tools for Design System Implementation
+
+- tools for design **and handoff**
+- tools for documenting
+- tokens streamline
+- development playgrounds
+- testing
+
+<!--
+-->
+
+## Tools examples
 { .no-title }
 
 <Cover src="slides/v1-24.png" alt=""/>
 
 <!--
+-->
+
+## Tools for Design System Implementation: Figma
+{ .no-title }
+
+<Cover src="slides/v8-14.png" alt=""/>
+
+<!--
+v8, s14:
+"Collaborative Design
+Figma allows multiple designers to work on the same file simultaneously, fostering real-time collaboration and faster iteration cycles. This feature is particularly useful for large teams working on complex design systems.
+Component Libraries
+Figma's robust component system enables the creation of reusable UI elements that can be easily updated across all instances. This ensures consistency throughout the design process and makes it easier to maintain large-scale design systems.
+Developer Handoff
+Figma provides developers with easy access to design specifications, including CSS properties, dimensions, and asset exports. This streamlines the handoff process and reduces the likelihood of misinterpretation during implementation."
+-->
+
+## Tools for Design System Implementation: Storybook
+{ .no-title }
+
+<Cover src="slides/v8-15.png" alt=""/>
+
+<!--
+v8, s15:
+"Component Development
+Storybook provides an isolated environment for developing and testing UI components, allowing developers to focus on one component at a time without the complexities of the full application.
+3 Visual Testing
+Storybook integrates with visual regression testing tools, allowing teams to catch unintended changes to component appearance automatically during the development process.
+2 Interactive Documentation
+With Storybook, teams can create living documentation that showcases components in various states and configurations, making it easier for both designers and developers to understand and use the design system.
+4 Addon Ecosystem
+A rich ecosystem of addons extends Storybook's functionality, offering features like accessibility testing, responsive design tools, and design token integration."
+-->
+
+## Integrated Workflow: Bridging Design and Development
+{ .no-title }
+
+<Cover src="slides/v8-17.png" alt=""/>
+
+<!--
+TODO:
+- change from Zeplin and InVision to other tools
+- provide workflow from thesis
+
+
+v8, s17:
+"Design in Figma
+Designers create and iterate on UI components and patterns using Figma's collaborative features and component libraries.
+1
+Handoff via Zeplin
+Designs are exported to Zeplin for detailed specifications and style guide generation, facilitating clear communication with developers.
+2
+Develop in Storybook
+Developers use Storybook to build and test individual components in isolation, ensuring they match the design specifications.
+3
+Manage with InVision DSM
+4
+The entire design system, including documentation and assets, is centrally managed and distributed using InVision DSM."
 -->
 
 ## Accessibility in Design Systems
@@ -625,6 +814,24 @@ Slides: v1 #12
 <!--
 -->
 
+## Keyboard Navigation: Ensuring Universal Access
+{ .no-title }
+
+<Cover src="slides/v8-20.png" alt=""/>
+
+<!--
+v8, s20:
+"
+Importance of Keyboard Navigation
+Many users rely on keyboards or alternative input devices to navigate websites and applications, making keyboard accessibility crucial for inclusive design.
+Focus Management
+Ensure that all interactive elements can receive keyboard focus in a logical order, and that the current focus is visually apparent to users.
+Keyboard Shortcuts
+Implement consistent keyboard shortcuts for common actions, enhancing efficiency for power users and those who cannot use a mouse.
+Testing Keyboard Accessibility
+Regularly test your interface using only a keyboard to identify and address any navigation or interaction issues that may arise."
+-->
+
 ## Maintaining and Scaling Design Systems
 { .no-title }
 
@@ -633,12 +840,86 @@ Slides: v1 #12
 <!--
 -->
 
+## Versioning Strategies for Design Systems
+{ .no-title }
+
+<Cover src="slides/v8-23.png" alt=""/>
+
+<!--
+v8, s23:
+"Semantic Versioning
+Adopt a MAJOR.MINOR.PATCH versioning system. Increment MAJOR for incompatible API changes, MINOR for backwards- compatible new features, and PATCH for backwards-compatible bug fixes.
+Changelog Maintenance
+Keep a detailed changelog documenting all changes, additions, and deprecations in each version. This helps teams understand what's new and plan for upgrades.
+Deprecation Policies
+Establish clear policies for deprecating old components or features. Provide ample notice and migration paths to ensure smooth transitions for teams using the design system.
+Release Schedules
+Define a regular release schedule to provide predictability for teams relying on the design system. This could be monthly for minor updates and quarterly for major releases."
+-->
+
+## Documentation Best Practices for Design Systems
+{ .no-title }
+
+<Cover src="slides/v8-24.png" alt=""/>
+
+<!--
+v8, s24:
+"Component Usage Guidelines
+Provide clear instructions on how and when to use each component, including examples of correct and incorrect usage.
+Code Examples
+Include working code snippets for each component, demonstrating how to implement them in various contexts and with different options.
+Design Principles
+Clearly articulate the overarching design principles that guide the system, helping teams understand the rationale behind design decisions.
+Accessibility Requirements
+Document specific accessibility considerations for each component, including ARIA roles, keyboard navigation, and color contrast requirements."
+-->
+
+## Community Involvement in Design System Development
+{ .no-title }
+
+<Cover src="slides/v8-25.png" alt=""/>
+
+<!--
+v8, s25:
+"Internal Feedback Channels
+Establish regular feedback sessions and surveys to gather input from designers and developers using the design system. This ensures the system evolves to meet the needs of its users.
+Open-Source Contributions
+For public design systems, consider opening up to community contributions. This can bring fresh perspectives and additional resources to the project.
+User Testing and Surveys
+Conduct regular user testing sessions and surveys to understand how end-users interact with products built using the design system. Use this feedback to inform future improvements.
+Team Workshops
+Organize cross-functional workshops to collaboratively solve design challenges and contribute to the evolution of the design system."
+-->
+
+## Advanced challenges:
+
+- API
+- Balance between standartisation and customization
+- Autiomations
+
+<!--
+
+Comment from Arnaud:
+"In my experience, when you want to bridge the gap between design and engineering, the winning combo is to align the APIs and ensure that what designers have access to is also available in dev (and, of course, the other way around). 
+
+The second topic is the balance between configuration and customization, the best way to illustrate that is this amazing article from Spotify engineering team: https://engineering.atspotify.com/2023/05/multiple-layers-of-abstraction-in-design-systems/"
+-->
+
 ## Automation in Design Systems
 { .no-title }
 
 <Cover src="slides/v1-28.png" alt=""/>
 
 <!--
+v8, s27:
+"Automated Testing
+Implement comprehensive unit tests and visual regression tests to catch issues early and ensure consistent component behavior.
+CI/CD for Design Tokens
+Set up continuous integration and deployment pipelines to automatically update and distribute design tokens across all platforms.
+Documentation Generation
+Use tools that automatically generate and update documentation from code comments and component metadata.
+Linting for Consistency
+Implement linting tools to enforce coding standards and catch potential issues before they make it into production."
 -->
 
 ## Future Trends in Design Systems
@@ -647,6 +928,13 @@ Slides: v1 #12
 <Cover src="slides/v1-29.png" alt=""/>
 
 <!--
+v8, s28:
+"Automated Component Suggestions
+AI algorithms could analyze design patterns and suggest appropriate components or layouts based on the context and user needs, speeding up the design process.
+Design Pattern Recognition
+Machine learning models could identify common design patterns across an organization's products, helping to standardize and optimize the design system.
+Accessibility Improvements
+AI-powered tools could automatically detect and suggest fixes for accessibility issues, ensuring compliance with WCAG guidelines and improving overall usability."
 -->
 
 ## Q&A and Discussion
