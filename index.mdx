@@ -488,11 +488,334 @@ Maintenance Difficulties
 As projects grow, updating and maintaining code becomes more time-consuming and error-prone.
 -->
 
-## What is difficult in CSS?
+
+## Where is CSS hard?
+{ .slide--shout .slide--highlighted }
 
 <!--
-Take from 2021 presenttaion
 -->
+
+
+## Building meme
+{ .no-title .slide--full-image }
+
+![](pictures/css-building.jpg)
+
+<!--
+-->
+
+
+## Is this good?
+
+```css
+H1 { color: blue }
+P EM { font-weight: bold }
+A:link IMG { border: 2px solid blue }
+A:visited IMG { border: 2px solid red }
+A:active IMG { border: 2px solid lime }
+```
+
+<!--
+Now look at this code. Do you see something strange? Any guess?
+Who would write their CSS like this?
+
+The problem is that CSS was created to make text bold and links underlined. It ideally suited
+solving these problems. In many websites developers still use CSS like.
+
+Actually this code from [CSS level 1 specification](http://www.w3.org/TR/CSS1/). It is
+very simple, was recommended in 1996. Time passed and we met new chalenges.
+-->
+
+
+## What makes CSS hard?
+
+<ul>
+  <li>Vertical centering</li>
+  <li>Equal height columns</li>
+  <li>Browser inconsistencies</li>
+  <li className="next">Unobvious tricks</li>
+</ul>
+
+<!--
+Before we decide what is wrong with that peice, let's guess what is hard in CSS.
+
+When ppl are asked, the repson is usually
+- vertical centing
+- making columns of equial height
+- browers render CSS differently, so it takes special knowledge and work to make the interface consistent
+- many solutions are unobvious tricks which needed to be memorized
+
+But this is not true, this is easy or at least clear how to manage. You can google for all this questions.
+-->
+
+
+## What <mark>really</mark> makes CSS hard?
+
+* Scoping
+* Specificity conflicts
+* Non-deterministic matches
+* Dependency management
+* Removing unused code
+
+<!--
+The real hard problems of CSS are here:
+- No scoping. Everything is CSS is global.
+- Specificity conflicts. I'll explain in detal later.
+- Non-deterministic matches which naturally result from declarativeness of CSS language
+- Dependency management
+- Removing unused code
+-->
+
+
+## CSS has no scoping
+
+```css
+a { /* Affects all the links */
+  color: red;
+}
+ul li a { /* Affects all the links in lists */
+  color: green;
+}
+```
+
+<!--
+This especially maters if you link third-party CSS.
+A common problem for developing libraries or code which will be later delivered to another web site.
+Everything in CSS is global, and writing good CSS is similar to writing a good program module if you only allowed to use
+global variables.
+This can be mixed with another CSS and applied to wrong nodes.
+Writing good CSS means you has to predict the future.
+-->
+
+
+## Specificity
+
+> Specificity is the means by which a browser decides which property values are the most relevant to an element and gets
+> to be applied. Specificity is only based on the matching rules which are composed of selectors of different sorts.
+
+<!--
+Another problem is specificity.
+Who remember what specificity is?
+Ok, I will explain.
+-->
+
+
+## The most specific matters
+
+```html
+<div id="test">
+  <span>Text</span>
+</div>
+```
+
+```css
+div#test span { color: green }
+span { color: red }
+div span { color: blue }
+```
+
+<!--
+If a brower has 2, 3 or more rules which match the same DOM node, how it decides what are the properties to take into
+work?
+The order does not matter.
+For every selector a browser calculates how important this set of rules is. The rule with the more specific selector
+would be prioritized.
+So, here we see...
+-->
+
+
+## How to overwrite?
+
+```
+<div class="sidebar">Left floated sidebar</div>
+```
+
+<div className="next">
+
+```
+.sidebar { /* Does it redefine `div.sidebar`?! */
+  float: right;
+}
+```
+
+</div>
+
+<div className="next">
+
+```
+body .sidebar { /* Overwrites 'div.sidebar {}' */
+  float: right;
+}
+```
+
+</div>
+
+<!--
+When it comes to developments, specificity matters when redefining pre-given
+components.
+
+To redefine the left-floated sidebar, we would overwrite the rule.
+-->
+
+
+## Specificity hell
+{: .no-title }
+
+```css
+.navbar-inverse .navbar-nav>li>a {
+  color: #999;
+}
+
+#home-menu-container #home-menu li a {
+  color: red;
+}
+
+body #home-menu ul li a {
+  color: blue !important;
+}
+```
+{: .code--size--m }
+
+<!--
+People ask on Stackoverflow how to overwrite Bootsrtap
+These things can be in different files
+-->
+
+
+## Family guy meme
+{ .no-title .slide--full-image }
+
+![](pictures/blinds-meme.gif)
+
+
+## Non-deterministic matches
+
+```css
+#content div div {
+  float: left;
+}
+```
+
+<!-- This can be matched to anything -->
+<!-- You cannot rely on the document structure, because it contantly changes while developing -->
+<!-- в момент, когда ты пишешь, ты указываешь признаки нод, на которые сматчится правило, а не точный адрес. смотри:
+можно писать адрес «Rettigweg 1, 13187 Berlin", а можно «около Wollankstrasse такая боковая улица с тремя домами, и
+там есть такой желтый дом, и там на втором этаже ещё балконы металлические с узорами» -->
+
+## Doctor meme
+{ .no-title .slide--full-image }
+
+![](pictures/doctor-meme.gif)
+
+<!--
+-->
+
+
+## Dependency management
+{ .dependency-management }
+
+### No dependencies, sorry
+
+<div className="next">
+
+<h3>But what about?</h3>
+
+```
+@import url('i-need-this.css');
+```
+
+</div>
+
+### No, sorry again.
+{ .next .sorry }
+
+<style>{`
+.dependency-management h3 {
+  padding-top: 1em;
+  margin-bottom: 0.5em;
+}
+.dependency-management .sorry
+{
+  color: green;
+}
+`}</style>
+
+<!--
+CSS was not developed as a programming language and now it still isn't. So, there is no way to declare that
+one piece of CSS needs anotehr one.
+OK, there is import. But this is not  aproduction solution. And assuming undeterministic matches we cannot rely on it.
+-->
+
+
+## Removing unused code
+
+100 pages in projects
+
+```css
+.person div a {
+  color: pink;
+}
+```
+
+Can I remove it? Will it break something? Maybe it is for a third-party HTML code?
+
+<!--
+CSS is declarative, so you cannot say what are the nodes the rules will aply to.
+If you have a lot of pages you cannot remove a piece of CSS and check visually if something is broken.
+Even worse with  dynamic web sites.
+-->
+
+
+## Where CSS is hard?
+{: .no-title .hard-css }
+
+<table><thead>
+
+<th markdown="1">
+
+This is not hard in CSS
+
+</th>
+
+<th markdown="1">
+
+This is!
+
+</th>
+
+</thead><tr>
+
+<td className="left">
+
+<Code>
+
+#sidebar ul li a {
+  <mark>color: red;</mark>
+  <mark>display: block;</mark>
+  <mark>padding: 1em;</mark>
+}
+
+</Code>
+
+</td>
+
+<td markdown="1">
+
+```
+<mark>#sidebar ul li a</mark> {
+  color: red;
+  display: block;
+  padding: 1em;
+}
+```
+
+</td>
+
+</tr></table>
+
+<!--
+TODO: highlight lines
+--->
 
 ## What is difficult in JavaScript?
 
