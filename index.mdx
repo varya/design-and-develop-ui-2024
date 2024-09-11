@@ -11,6 +11,15 @@ style: >
   .slide.title-08 h2 {
     font-size: 40px;
   }
+  .slide.title-06 h2 {
+    font-size: 30px;
+  }
+  .slide.text-08 {
+    font-size: 0.8em;
+  }
+  .slide.text-06 {
+    font-size: 0.6em;
+  }
   .no-title h2 {
     display: none;
   }
@@ -25,6 +34,19 @@ style: >
   }
   .cover-h-90 .cover {
     height: 90%;
+  }
+  .slide.cover--top {
+    padding-top: 280px;
+  }
+  .slide.cover--top .cover {
+    top: 0;
+    transform: translate(-50%, 0);
+  }
+  .slide .cover--right.cover {
+    right: 0;
+    left: auto;
+    top: 50%;
+    transform: translate(0,-50%);
   }
   .slide.black {
     background-color: #051428;
@@ -268,6 +290,76 @@ style: >
     font-size: 12px;
     fill: #fff;
   }
+
+  .slide.block-list li {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 15px 15px 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.8em;
+  }
+  .slide.block-list h3 {
+  margin-bottom: 0;
+  }
+  .slide.block-list p {
+    margin-bottom: 0;
+  }
+  .slide.block-list li:before {
+    display: none;
+  }
+
+  .slide.numbered-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    position: relative;
+    counter-reset: li;
+  }
+
+  .slide.numbered-list li {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 40px; /* Space for the number */
+  }
+
+  .slide.numbered-list ul::before {
+    content: '';
+    position: absolute;
+    left: 0.6em;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0;
+  }
+
+  .slide.numbered-list li:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    color: #333;
+    font-family: FF Meta Serif, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 6px;
+  }
+
+  .slide.numbered-list h3 {
+    margin-bottom: 0.25em;
+  }
+  .slide.numbered-list p {
+    margin-bottom: 0;
+  }
+  .slide.slide.table--naked table th {
+    background: none;
+    color: black;
+  }
 # Include footer content here or remove it
 footer: >
   <footer class="badge">
@@ -440,7 +532,7 @@ and enganging people.
 -->
 
 ## Large-Scale Project Challenges
-{ .large-scale-projects .title-08 }
+{ .block-list .title-08 }
 
 - ### Complex Codebases<br/>
   Navigating intricate structures and dependencies in extensive projects.
@@ -450,26 +542,6 @@ and enganging people.
   Adapting to changing project needs while preserving code integrity.
 - ### Maintenance Difficulties<br/>
   Keeping large codebases organized, efficient, and bug-free over time.
-
-<style>{`
-.slide.large-scale-projects li {
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  padding: 15px 15px 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  font-size: 0.8em;
-}
-.large-scale-projects h3 {
- margin-bottom: 0;
-}
-.slide.large-scale-projects p {
-  margin-bottom: 0;
-}
-.slide.large-scale-projects li:before {
-  display: none;
-}
-`}</style>
 
 <!--
 TODO: text
@@ -817,63 +889,85 @@ This is!
 TODO: highlight lines
 --->
 
-## What is difficult in JavaScript?
+
+## Where is JavaScript hard?
+{ .slide--shout .slide--highlighted }
 
 <!--
 -->
 
-## Old school JS
-{ .no-title }
+## Old-School JavaScript Challenges
+{ .numbered-list .title-08 }
 
-<Cover src="slides/1-2.png" alt=""/>
+- ### Direct DOM Manipulation
+  Messy code with direct element selection and modification.
+- ### Event Handling Complexity
+  Difficult management of multiple event listeners and callbacks.
+- ### State Management
+  Lack of centralized state leading to inconsistent UI updates.
+- ### Maintenance Problems
+  Spaghetti code without clear structure, making updates risky.
 
 <!--
 -->
 
-## Vanilla
+## Vanilla Js or Component Driven?
 { .no-title }
 
-<Cover src="slides/1-3.png" alt=""/>
+
+| Vanilla Js    | Component-Driven |
+| -------- | ------- |
+| Direct DOM manipulation, global functions, and scattered state management.  | Encapsulated logic, isolated state, and reusable UI building blocks.    |
+
+### Structured components lead to cleaner, more maintainable code
 
 <!--
 -->
 
 ## Maintenance Mayhem
+{ .block-list }
 
-#### Code Comprehension
-Difficulty understanding complex, intertwined code over time.
+- ### Code Comprehension
+  Difficulty understanding complex, intertwined code over time.
+- ### Risky Updates
+  Fear of breaking unknown dependenciesч when making changes.
+- ### Inconsistent Components
+  Similar components diverge, leading to maintenance nightmares.
+- ### Scalability Issues
+  Growing projects become increasingly difficult to manage and expand.
 
-#### Risky Updates
-Fear of breaking unknown dependenciesч when making changes.
+## Component-Driven Development
+{ .slide--shout .slide--primary }
 
-#### Inconsistent Components
-Similar components diverge, leading to maintenance nightmares.
+<!--
+-->
 
-#### Scalability Issues
-Growing projects become increasingly difficult to manage and expand.
 
-## Component-Driven Development: A Solution
+## Component-Driven Development
+{ .numbered-list .title-08 }
 
-#### UI Breakdown
-Dividing interfaces into reusable, independent components.
-
-#### Encapsulation
-Bundling functionality and styling within self- contained units.
-
-#### Consistency
-Promoting uniform design and behavior across the application.
-
-#### Maintainability
-Easier updates and bug fixes with isolated component logic
+- ### UI Breakdown
+  Dividing interfaces into reusable, independent components.
+- ### Encapsulation
+  Bundling functionality and styling within self- contained units.
+- ### Consistency
+  Promoting uniform design and behavior across the application.
+- ### Maintainability
+  Easier updates and bug fixes with isolated component logic
 
 <!--
 Slides: v1 #12
 -->
 
 ## Benefits of Component-Driven Development
-{ .no-title }
+{ .title-06 .cover--top .table--naked .text-08 }
 
-<Cover src="slides/v1-13.png" alt=""/>
+<Cover src="pictures/v1-13.jpg" alt=""/>
+
+| Reusability | Easier Testing | Improved Collaboration | Faster Development |
+|----------|----------|----------|----------|
+| Components can be easily reused across different parts of the application. | Isolated components allow for more straightforward and thorough testing. | Designers and developers can work more efficiently on specific components. | Reusable components speed up the development and iteration process. |
+
 
 <!--
 --->
@@ -881,7 +975,19 @@ Slides: v1 #12
 ## Component-Driven Development in JavaScript Frameworks
 { .no-title }
 
-<Cover src="slides/v1-14.png" alt=""/>
+![](pictures/v1-14.png){: .cover--right .cover }
+
+### React
+Virtual DOM, JSX syntax
+
+### Angular
+Directives, two-way data binding
+
+### Vue
+Reactivity system, template-based components
+
+### Web Components (Lit, Stencil)
+Framework-agnostic
 
 <!--
 -->
