@@ -1089,6 +1089,58 @@ Framework-agnostic
 
 "Design Systems Vocabulary — A Review of Key Terms and Concepts", https://varya.me/blog/design-systems-review/
 
+<!--
+-->
+
+
+## Definition
+{ .no-title .slide--shout .definition }
+
+Design systems are the foundation of consistent user interfaces. They provide reusable components, patterns, and guidelines for creating cohesive products across platforms.
+
+<div class="arrow-down"></div>
+
+<Blockquote>
+"Design systems" is a systematic approach for creating, implementing, and maintaining user interfaces.
+</Blockquote>
+
+<style>{`
+
+.definition .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 60px solid #ca4e1f; /* Arrow triangle color */
+  position: relative;
+  margin: 50px auto;
+}
+
+.definition .arrow-down::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -5px;
+  width: 10px;
+  height: 60px;
+  background-color: #75d3d1; /* Tail color */
+  z-index: -1;
+}
+
+.definition .arrow-down::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -35px;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.2); /* Black shadow */
+  border-radius: 50%;
+  z-index: -2;
+}
+
+`}</style>
+
 
 ## Introduction to Design Systems
 { .no-title }
@@ -1101,6 +1153,8 @@ v8 s1
 "Welcome to an in-depth exploration of design systems, the cornerstone of modern user interface development. In this presentation, we'll delve into the world of design systems, understanding their importance, components, and impact on the design and development process. From bridging the gap between designers and developers to ensuring accessibility and scalability, we'll cover all aspects of design systems that are crucial for creating consistent, efficient, and user-friendly digital products. Get ready to unlock the power of design systems and revolutionize your approach to UI design and development."
 -->
 
+
+
 ## What is a Design System?
 { .no-title }
 
@@ -1110,17 +1164,58 @@ v8 s1
   TODO: keep definition only
 -->
 
-## Definition
-{ .no-title .slide--shout }
-
-<Blockquote>
-"Design systems" is a systematic approach for creating, implementing, and maintaining user interfaces on the web.
-</Blockquote>
-
 ## Key Components of a Design System
-{ .no-title }
+{ .key-components .title-08 }
 
-<Cover src="slides/v1-19.png" alt=""/>
+- ### Design Tokens
+  Fundamental design elements like colors, typography, and spacing.
+- ### UI Components
+  Reusable interface elements such as buttons, forms, and cards.
+- ### Patterns
+  Recurring solutions for layout structures and interaction patterns.
+- ### Guidelines
+  Usage rules, accessibility standards, and best practices.
+
+<style>{`
+
+.slide.key-components ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 0.8em;
+}
+
+.slide.slide.key-components ul li {
+    padding-left: 2.25em;
+}
+
+.slide.slide.key-components ul > li:before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  left: -1.25em;
+}
+
+.slide.key-components ul li:nth-child(1)::before {
+  background-image: url(icons/design-tokens-icon.svg);
+  color: transparent;
+}
+.slide.key-components ul li:nth-child(2)::before {
+  background-image: url(icons/ui-components-icon.svg);
+  color: transparent;
+}
+.slide.key-components ul li:nth-child(3)::before {
+  background-image: url(icons/patterns-icon.svg);
+  color: transparent;
+}
+.slide.key-components ul li:nth-child(4)::before {
+  background-image: url(icons/guidelines-icon.svg);
+  color: transparent;
+}
+`}</style>
 
 <!--
 
