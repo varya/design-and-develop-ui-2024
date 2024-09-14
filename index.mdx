@@ -1039,6 +1039,25 @@ Framework-agnostic
 -->
 
 
+## Design and UI require a systematic approach​
+{ .systematic-approach }
+
+<Cover src="pictures/car-parts.jpg" alt=""/>
+
+<style>{`
+  .systematic-approach h2 {
+    bottom: 25px;
+    position: absolute;
+    background-color: #b7c9e2;
+    margin-right: 100px;
+    padding: 10px;
+  }
+`}</style>
+
+<!--
+-->
+
+
 ## Introduction to Design Systems
 { .slide--shout .slide--primary }
 
@@ -1248,32 +1267,196 @@ A centralized resource that serves as the definitive reference for all design an
 `}</style>
 
 <!--
-<Cover src="slides/v8-3.png" alt=""/>
+-->
+
+## Do those buttons function the same way?​
+{ .no-title .button }
+
+### Do those buttons function the same way?​
+{ .next .question }
+
+<Cover src="pictures/buttons.png" alt=""/>
+
+##### Credits: Andrey Okonetchnikov, https://www.youtube.com/watch?v=sV4chQq-H7o 
+{ .credits }
+
+<style>{`
+.button .cover {
+  margin-top: -50px;
+}
+.button .question {
+  background-color: white;
+  font-size: 60px;
+  padding: 10px;
+  margin-top: 60px;
+}
+.button .credits {
+  font-size: 60%;
+  position: absolute;
+  bottom: 25px;
+}
+`}</style>
+
+<!--
+TODO: Explain why consitency is important
 -->
 
 
 ## Design Tokens: The Building Blocks
-{ .no-title }
+{ .slide--3-columns .title-08 .text-08 }
 
+### Colors
+
+A color palette that includes primary, secondary, and accent colors, along with their various shades and tints. These colors are used consistently across all UI elements to maintain visual harmony.
+
+### Typography
+
+A set of font families, sizes, weights, and line heights that define the textual hierarchy and readability of the interface. This includes headings, body text, captions, and other typographic elements.
+
+### Spacing 
+
+Standardized units of measurement for margins, padding, and layout grids. Consistent spacing ensures proper alignment and visual rhythm throughout the interface.
+
+
+<style>{`
+
+.slide--3-columns {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: 40px;
+  -moz-column-gap: 40px;
+  column-gap: 40px;
+  margin-bottom: 30px;
+}
+
+.slide--3-columns h2 {
+  -webkit-column-span: all;
+  column-span: all;
+  margin-bottom: 20px; /* Add some space after the h2 */
+}
+
+.slide--3-columns h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  break-before: column;
+}
+
+.slide--3-columns p {
+  margin-bottom: 20px;
+  break-inside: avoid;
+}
+
+`}</style>
+
+<!--
 <Cover src="slides/v8-4.png" alt=""/>
 
-<!--
 -->
 
-## UI Components: The Building Blocks of Interfaces
-{ .no-title }
+## UI Components: The Building Blocks of UI
+{ .ui-components .title-06 }
 
+- ### Buttons
+  Interactive elements that trigger actions or navigate users to different parts of the application.
+- ### Forms
+  Input fields, checkboxes, and other elements that allow users to enter and submit data.
+- ### Cards
+  Containers for presenting related information in a compact and visually appealing format.
+- ### Navigation
+  Menus, breadcrumbs, and other elements that help users move through the application.
+
+<style>{`
+.slide.ui-components ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 0.8em;
+}
+
+.slide.ui-components ul li {
+    padding-left: 2.25em;
+    margin-bottom: 0.5em;
+}
+
+.slide.ui-components p {
+  margin-bottom: 0;
+}
+
+.slide.slide.ui-components ul li:before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0.25em;
+}
+
+.slide.ui-components ul li:nth-child(1)::before {
+  color: transparent;
+  background-image: url(icons/buttons-icon.svg);
+}
+.slide.ui-components ul li:nth-child(2)::before {
+  color: transparent;
+  background-image: url(icons/forms-icon.svg);
+}
+.slide.ui-components ul li:nth-child(3)::before {
+  color: transparent;
+  background-image: url(icons/cards-icon.svg);
+}
+.slide.ui-components ul li:nth-child(4)::before {
+  color: transparent;
+  background-image: url(icons/navigation-icon.svg);
+}
+
+.slide.ui-components h3 {
+  margin-bottom: 0.25em;
+}
+
+.slide.ui-components p {
+  margin-top: 0;
+}
+`}</style>
+
+
+<!--
 <Cover src="slides/v8-5.png" alt=""/>
-
-<!--
 -->
 
-## Design Patterns: Solving Common UI Challenges
-{ .no-title }
+## Patterns: Solving Common UI Challenges
+{ .numbered-list .title-06 .text-06 .patterns }
+
+![](pictures/patterns.png){: .cover--right .cover }
+
+- ### Layout Structures
+   Standardized arrangements of UI elements, such as grid systems and responsive layouts, that ensure consistency across different screen sizes and devices.
+
+- ### Interaction Patterns
+   Common user behaviors and expectations, like hover effects, drag-and-drop functionality, and scrolling behaviors, that are implemented consistently throughout the interface.
+
+- ### Data Visualization
+   Guidelines for presenting complex information in easily digestible formats, including charts, graphs, and infographics.
+
+- ### Error Handling
+   Consistent approaches to displaying and resolving errors, including form validation, error messages, and recovery options.
+
+<style>{`
+
+.patterns {
+padding-right: 20em;
+}
+
+`}</style>
+
+
+<!--
 
 <Cover src="slides/v8-6.png" alt=""/>
 
-<!--
+
 v8, s6:
 "Layout Structures
 Standardized arrangements of UI elements, such as grid systems and responsive layouts, that ensure consistency across different screen sizes and devices.
@@ -1285,12 +1468,35 @@ Error Handling
 Consistent approaches to displaying and resolving errors, including form validation, error messages, and recovery options."
 -->
 
-## Design System Guidelines: Ensuring Proper Implementation
-{ .no-title }
+## Guidelines: Ensuring Proper Implementation
+{ .numbered-list .title-06 .text-06 .guidelines }
 
-<Cover src="slides/v8-7.png" alt=""/>
+![](pictures/guidelines.png){: .cover--right .cover }
+
+- ### Usage Rules
+   Clear instructions on when and how to use specific components and patterns, including do's and don'ts to maintain consistency and effectiveness.
+
+- ### Accessibility Standards
+   Detailed requirements for ensuring that all UI elements are accessible to users with disabilities, including color contrast ratios, keyboard navigation, and screen reader compatibility.
+
+- ### Responsive Design Guidelines
+   Principles for adapting layouts and components to different screen sizes and devices, ensuring a consistent experience across platforms.
+
+- ### Brand Voice and Tone
+   Guidelines for maintaining a consistent brand personality in all textual elements, including microcopy, headings, and error messages.
+
+<style>{`
+
+.guidelines {
+padding-right: 20em;
+}
+
+`}</style>
+
 
 <!--
+
+<Cover src="slides/v8-7.png" alt=""/>
 
 v8, s7:
 "Usage Rules
@@ -1303,13 +1509,29 @@ Brand Voice and Tone
 Guidelines for maintaining a consistent brand personality in all textual elements, including microcopy, headings, and error messages."
 -->
 
-## Examples of Design Systems
-{ .no-title }
+## Examples
+{ .slide__examples }
 
-<Cover src="slides/v1-20.png" alt=""/>
+- Fluent (by Microsoft) https://www.microsoft.com/design/fluent​
+- Atlassian Design System https://atlassian.design/ ​
+- Carbon (by IBM) https://www.carbondesignsystem.com/ ​
+- Airbus Design System https://maevahemon.fr/airbus.html ​
+- Material UI by Google https://material.io/​
+- Polaris (by Shopify) https://polaris.shopify.com/ ​
+- US government Design System https://designsystem.digital.gov/ ​
+- Audi Design System https://www.audi.com/ci/en/guides/user-interface/introduction.html​
+- UK government Design System https://design-system.service.gov.uk/ 
+
+<style>{`
+  .slide__examples {
+    font-size: 80%;
+  }
+`}</style>
 
 <!--
+<Cover src="slides/v1-20.png" alt=""/>
 -->
+
 
 ## Design System Catalogs: Inspiration and Resources
 { .no-title }
@@ -1620,35 +1842,6 @@ AI-powered tools could automatically detect and suggest fixes for accessibility 
 `}</style>
 
 
-## Do those buttons function the same way?​
-{ .no-title .button }
-
-### Do those buttons function the same way?​
-{ .next .question }
-
-<Cover src="pictures/buttons.png" alt=""/>
-
-##### Credits: Andrey Okonetchnikov, https://www.youtube.com/watch?v=sV4chQq-H7o 
-{ .credits }
-
-<style>{`
-.button .cover {
-  margin-top: -50px;
-}
-.button .question {
-  background-color: white;
-  font-size: 60px;
-  padding: 10px;
-  margin-top: 60px;
-}
-.button .credits {
-  font-size: 60%;
-  position: absolute;
-  bottom: 25px;
-}
-`}</style>
-
-
 ## Ugly house
 { .no-title }
 
@@ -1670,22 +1863,6 @@ every week, or even every day
 
 ### GROWING TEAMS
 of designers, developer, product people
-
-
-## Design and UI require a systematic approach​
-{ .systematic-approach }
-
-<Cover src="pictures/car-parts.jpg" alt=""/>
-
-<style>{`
-  .systematic-approach h2 {
-    bottom: 25px;
-    position: absolute;
-    background-color: #b7c9e2;
-    margin-right: 100px;
-    padding: 10px;
-  }
-`}</style>
 
 
 ## Design and development paths
@@ -1841,26 +2018,6 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 ### The highest levels of maturity are achieved with design systems
 
 The very fact of design systems emerging as a new approach and a set of artifacts that affect the process of development demonstrates the subject of Organizational Innovation and Deployment.
-
-
-## Examples
-{ .slide__examples }
-
-- Fluent (by Microsoft) https://www.microsoft.com/design/fluent​
-- Atlassian Design System https://atlassian.design/ ​
-- Carbon (by IBM) https://www.carbondesignsystem.com/ ​
-- Airbus Design System https://maevahemon.fr/airbus.html ​
-- Material UI by Google https://material.io/​
-- Polaris (by Shopify) https://polaris.shopify.com/ ​
-- US government Design System https://designsystem.digital.gov/ ​
-- Audi Design System https://www.audi.com/ci/en/guides/user-interface/introduction.html​
-- UK government Design System https://design-system.service.gov.uk/ 
-
-<style>{`
-  .slide__examples {
-    font-size: 80%;
-  }
-`}</style>
 
 
 ## Technologies
