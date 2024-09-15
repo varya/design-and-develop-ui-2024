@@ -453,6 +453,10 @@ meta:
   }
 `}</style>
 
+<!--
+Welcome, everyone! Today we're going to talk about designing and developing user interfaces in 2024. We'll explore modern approaches to creating consistent, efficient, and user-friendly interfaces. This lecture will help you understand the challenges of building large-scale projects and introduce you to the concept of design systems.
+-->
+
 
 ## Me
 { .no-title .about-me }
@@ -540,7 +544,7 @@ meta:
 <!--
 
 My name is Varya. I work as an independent consultant, and design systems are my
-major focus. I started with libraries of components about 10 years ago,
+major focus. I started with libraries of components about 15 years ago,
 before the term "design systems" even emerged.
 
 By that time, my own understanding and the community's was more technical.
@@ -558,12 +562,23 @@ and enganging people.
 
 -->
 
+
 ## Lecture Content
 
 1. Large-scale project challenges
 1. Web: CSS and JavaScript
 1. Component-driven development
 1. Design Systems
+
+<!--
+Here's what we'll cover in today's lecture:
+1. We'll start by looking at the challenges that come with large-scale projects.
+2. Then, we'll discuss CSS and JavaScript, focusing on the tricky parts when working on big projects.
+3. Next, we'll explore component-driven development, a modern approach to building interfaces.
+4. Finally, we'll dive into design systems, which bring all these concepts together.
+
+Let's get started!
+-->
 
 ## Large-Scale Project Challenges
 { .block-list .title-08 }
@@ -578,20 +593,13 @@ and enganging people.
   Keeping large codebases organized, efficient, and bug-free over time.
 
 <!--
-TODO: text
-What is the focus of this lecture and how it is related to me as a professional.
+When working on big projects, developers face several challenges:
+1. Complex codebases: As projects grow, the code becomes more complicated and harder to manage.
+2. Large dynamic teams: With many people working together, it's tough to keep everyone on the same page.
+3. Changing requirements: Projects often change direction, and the code needs to keep up.
+4. Maintenance problems: Keeping a large project running smoothly over time is a big task.
 
-v2, s3:
-CSS and JavaScript Challenges in Large- Scale Projects
-Large-scale web projects present unique challenges that can overwhelm even experienced developers. These projects often involve complex codebases, multiple developers working simultaneously, and constantly evolving requirements. As the project grows, maintaining consistency and managing updates becomes increasingly difficult, leading to a host of CSS and JavaScript-related issues.
-Complex Codebases
-Navigating and understanding extensive code structures becomes challenging as projects scale.
-Multiple Developers
-Coordinating efforts and maintaining consistency across a team of developers can lead to conflicts and inconsistencies.
-Evolving Requirements
-Adapting to changing project needs while maintaining code integrity becomes increasingly difficult over time.
-Maintenance Difficulties
-As projects grow, updating and maintaining code becomes more time-consuming and error-prone.
+These challenges are why we need better ways to design and develop user interfaces. Let's look at some specific issues with CSS and JavaScript.
 -->
 
 
@@ -599,6 +607,7 @@ As projects grow, updating and maintaining code becomes more time-consuming and 
 { .slide--shout .slide--highlighted }
 
 <!--
+Now, let's talk about CSS. Many developers think CSS is easy, but it can be tricky, especially in big projects. Let's look at some common CSS challenges.
 -->
 
 
@@ -608,6 +617,7 @@ As projects grow, updating and maintaining code becomes more time-consuming and 
 ![](pictures/css-building.jpg)
 
 <!--
+This meme perfectly shows how CSS can be unpredictable. You might think you're building a simple structure, but one small change can make everything fall apart! This is why we need better ways to manage our CSS in large projects.
 -->
 
 
@@ -651,7 +661,7 @@ When ppl are asked, the repson is usually
 - browers render CSS differently, so it takes special knowledge and work to make the interface consistent
 - many solutions are unobvious tricks which needed to be memorized
 
-But this is not true, this is easy or at least clear how to manage. You can google for all this questions.
+But these aren't the real challenges. You can easily find solutions for these online. Let's look at the actual difficult parts of CSS.
 -->
 
 
@@ -685,12 +695,12 @@ ul li a { /* Affects all the links in lists */
 ```
 
 <!--
-This especially maters if you link third-party CSS.
-A common problem for developing libraries or code which will be later delivered to another web site.
-Everything in CSS is global, and writing good CSS is similar to writing a good program module if you only allowed to use
-global variables.
-This can be mixed with another CSS and applied to wrong nodes.
-Writing good CSS means you has to predict the future.
+One big problem with CSS is that it's global. This means that any CSS you write can affect your entire website. Look at this example:
+
+The first rule affects all links on the site.
+The second rule changes links in lists.
+
+This global nature makes it hard to write CSS for specific parts of your site without accidentally changing other parts. It's especially tricky when you're working on a library or code that will be used on different websites.
 -->
 
 
@@ -700,9 +710,7 @@ Writing good CSS means you has to predict the future.
 > to be applied. Specificity is only based on the matching rules which are composed of selectors of different sorts.
 
 <!--
-Another problem is specificity.
-Who remember what specificity is?
-Ok, I will explain.
+Specificity is another tricky part of CSS. It's how browsers decide which CSS rules to apply when there are conflicts. Understanding specificity is crucial for writing good CSS, especially in large projects. Let's look at how it works.
 -->
 
 
@@ -757,10 +765,11 @@ body .sidebar { /* Overwrites 'div.sidebar {}' */
 </div>
 
 <!--
-When it comes to developments, specificity matters when redefining pre-given
-components.
+When you're working on a big project, you often need to change existing styles. But because of specificity, this can be tricky. 
 
-To redefine the left-floated sidebar, we would overwrite the rule.
+In this example, just writing `.sidebar` might not be enough to change the existing style. You might need to use a more specific selector like `body .sidebar` to make sure your new style is applied.
+
+This is why CSS can get messy in big projects - you end up with very specific selectors just to overwrite other styles.
 -->
 
 
@@ -783,8 +792,9 @@ body #home-menu ul li a {
 {: .code--size--m }
 
 <!--
-People ask on Stackoverflow how to overwrite Bootsrtap
-These things can be in different files
+This is what we call "specificity hell." It's when you have to write increasingly complex selectors just to apply simple styles. 
+
+Look at these examples - they're all trying to change the color of a link. This kind of CSS is hard to maintain and understand. It's a common problem when working with large CSS frameworks or in big teams.
 -->
 
 
@@ -792,6 +802,10 @@ These things can be in different files
 { .no-title .slide--full-image }
 
 ![](pictures/blinds-meme.gif)
+
+<!--
+This meme perfectly captures how frustrating CSS specificity can be! Sometimes, no matter what you do, your styles just won't apply. It feels like you're fighting against the CSS itself. This is why we need better ways to organize our CSS in large projects.
+-->
 
 
 ## Non-deterministic matches
@@ -802,11 +816,14 @@ These things can be in different files
 }
 ```
 
-<!-- This can be matched to anything -->
-<!-- You cannot rely on the document structure, because it contantly changes while developing -->
-<!-- в момент, когда ты пишешь, ты указываешь признаки нод, на которые сматчится правило, а не точный адрес. смотри:
-можно писать адрес «Rettigweg 1, 13187 Berlin", а можно «около Wollankstrasse такая боковая улица с тремя домами, и
-там есть такой желтый дом, и там на втором этаже ещё балконы металлические с узорами» -->
+<!--
+Here's another tricky part of CSS. This selector, `#content div div`, might seem straightforward, but it can match many different elements in your HTML. 
+
+When writing CSS, you provide criterias for the nodes to whihc this CSS should be applied. If we make an analogy with writing and address on an envelop, deterministic approach would be to write as we usually do: Konemiehentie 2, Espoo, Finland. While with non-deterministic approach — as wwe do in CSS — we write "a house on a small street with a green tree near it and a see in 2 blocks".
+
+As your project grows and changes, you can't always predict which elements this CSS will affect. This makes it hard to maintain and update your styles without breaking things unexpectedly.
+-->
+
 
 ## Doctor meme
 { .no-title .slide--full-image }
@@ -814,6 +831,7 @@ These things can be in different files
 ![](pictures/doctor-meme.gif)
 
 <!--
+This meme shows how CSS can sometimes feel like a guessing game. You might think you know what your CSS will do, but then it surprises you! This unpredictability is why we need more structured approaches to CSS in large projects.
 -->
 
 
@@ -847,9 +865,11 @@ These things can be in different files
 `}</style>
 
 <!--
-CSS was not developed as a programming language and now it still isn't. So, there is no way to declare that
-one piece of CSS needs anotehr one.
-OK, there is import. But this is not  aproduction solution. And assuming undeterministic matches we cannot rely on it.
+In many programming languages, you can clearly state when one part of your code needs another part. But CSS doesn't have a good way to do this.
+
+The `@import` rule exists, but it's not a great solution for big projects. It can slow down your website and doesn't solve the problem of knowing which styles depend on others.
+
+This lack of proper dependency management makes it hard to organize and maintain CSS in large projects.
 -->
 
 
@@ -866,9 +886,11 @@ OK, there is import. But this is not  aproduction solution. And assuming undeter
 Can I remove it? Will it break something? Maybe it is for a third-party HTML code?
 
 <!--
-CSS is declarative, so you cannot say what are the nodes the rules will aply to.
-If you have a lot of pages you cannot remove a piece of CSS and check visually if something is broken.
-Even worse with  dynamic web sites.
+Imagine you have a big website with 100 pages and you see this CSS rule. Can you safely remove it? It's hard to know!
+
+Maybe it's used on a page you forgot about. Maybe it's for some third-party code. In a big project, you can't just remove CSS and visually check every page to see if something broke.
+
+This is why unused CSS often sticks around, making stylesheets bigger and harder to manage over time.
 -->
 
 
@@ -893,22 +915,20 @@ This is!
 
 <td className="left">
 
-<Code>
-
+```
 #sidebar ul li a {
-  <mark>color: red;</mark>
-  <mark>display: block;</mark>
-  <mark>padding: 1em;</mark>
+  color: red;
+  display: block;
+  padding: 1em;
 }
-
-</Code>
+```
 
 </td>
 
-<td markdown="1">
+<td className="right">
 
 ```
-<mark>#sidebar ul li a</mark> {
+#sidebar ul li a {
   color: red;
   display: block;
   padding: 1em;
@@ -919,16 +939,53 @@ This is!
 
 </tr></table>
 
+<style>{`
+
+.hard-css .left {
+  width: 50%;
+  position: relative;
+  line-height: 2em; /* Adjust this according to your design */
+  background: linear-gradient(
+    transparent 2em,
+    #90EE90 2em,      /* Start from the 2nd line */
+    #90EE90 8em,        /* End after the 4th line */
+    transparent 8em    /* No highlight beyond the 4th line */
+  );
+  background-clip: padding-box; /* Ensure background is clipped to the content box */
+}
+
+.hard-css .right {
+  width: 50%;
+  position: relative;
+  line-height: 2em; /* Adjust this according to your design */
+  background: linear-gradient(
+    #FF5733 0,
+    #FF5733 2em,
+    transparent 2em
+  );
+  background-clip: padding-box; /* Ensure background is clipped to the content box */
+}
+
+`}</style>
+
 <!--
-TODO: highlight lines
---->
+Let's sum up what we've learned about CSS challenges:
+
+On the left, we see simple CSS properties. These aren't the hard part of CSS. You can easily learn how to make text bold or change colors.
+
+On the right, we see the selector. This is where CSS gets tricky. Deciding how to structure your selectors, managing specificity, and ensuring your styles apply where you want (and only where you want) - these are the real challenges in CSS.
+
+Understanding these challenges is the first step to writing better, more manageable CSS in large projects.
+-->
 
 
 ## Where is JavaScript hard?
 { .slide--shout .slide--highlighted }
 
 <!--
+Now that we've looked at CSS challenges, let's turn to JavaScript. JavaScript has its own set of difficulties in large projects. Let's explore what makes JavaScript hard to manage as your project grows.
 -->
+
 
 ## Old-School JavaScript Challenges
 { .numbered-list .title-08 }
@@ -943,21 +1000,16 @@ TODO: highlight lines
   Spaghetti code without clear structure, making updates risky.
 
 <!--
+Traditional JavaScript development often faces these problems:
+
+1. Direct DOM Manipulation: Changing HTML directly with JavaScript can get messy fast.
+2. Complex Event Handling: Managing many event listeners can be confusing.
+3. State Management: Keeping track of data and UI state gets complicated without a system.
+4. Maintenance Issues: Old JavaScript code can turn into "spaghetti code" that's hard to update.
+
+These issues make it difficult to build and maintain large JavaScript applications. Let's look at a better approach.
 -->
 
-## Vanilla Js or Component Driven?
-{ .no-title }
-
-
-| Vanilla Js    | Component-Driven |
-| -------- | ------- |
-| Direct DOM manipulation, global functions, and scattered state management.  | Encapsulated logic, isolated state, and reusable UI building blocks.    |
-
-### Structured components lead to cleaner, more maintainable code
-
-<!--
-TODO: Move or remove this slide
--->
 
 ## Maintenance Mayhem
 { .block-list }
@@ -971,10 +1023,23 @@ TODO: Move or remove this slide
 - ### Scalability Issues
   Growing projects become increasingly difficult to manage and expand.
 
+<!--
+Maintaining large JavaScript projects can be a real headache:
+
+1. It's hard to understand complex code, especially if you didn't write it.
+2. Making changes is scary because you might break something unexpectedly.
+3. Similar components start to differ over time, creating inconsistencies.
+4. As the project grows, it becomes harder and harder to add new features.
+
+These problems show why we need a more structured approach to building user interfaces.
+-->
+
+
 ## Component-Driven Development
 { .slide--shout .slide--primary }
 
 <!--
+Now, let's talk about a better way to build user interfaces: component-driven development. This approach helps solve many of the problems we've discussed with CSS and JavaScript.
 -->
 
 
@@ -991,7 +1056,14 @@ TODO: Move or remove this slide
   Easier updates and bug fixes with isolated component logic
 
 <!--
-Slides: v1 #12
+Component-driven development is a way of building user interfaces by breaking them into reusable parts. Here's how it works:
+
+1. We divide the interface into independent, reusable components.
+2. Each component contains its own HTML, CSS, and JavaScript.
+3. This approach helps keep designs consistent across the application.
+4. It's easier to update and fix bugs because each component is self-contained.
+
+This method helps solve many of the problems we saw with traditional CSS and JavaScript development.
 -->
 
 ## Benefits of Component-Driven Development
@@ -1003,9 +1075,17 @@ Slides: v1 #12
 |----------|----------|----------|----------|
 | Components can be easily reused across different parts of the application. | Isolated components allow for more straightforward and thorough testing. | Designers and developers can work more efficiently on specific components. | Reusable components speed up the development and iteration process. |
 
-
 <!--
---->
+Component-driven development offers several key benefits:
+
+1. Reusability: You can use components in different parts of your app, saving time.
+2. Easier Testing: You can test each component separately, which is simpler than testing a whole page.
+3. Better Teamwork: Designers and developers can work on specific components, making collaboration easier.
+4. Faster Development: With reusable components, you can build and update your app more quickly.
+
+These benefits make component-driven development a powerful approach for large projects.
+-->
+
 
 ## Component-Driven Development in JavaScript Frameworks
 { .no-title }
@@ -1025,6 +1105,14 @@ Reactivity system, template-based components
 Framework-agnostic
 
 <!--
+Many popular JavaScript frameworks support component-driven development:
+
+1. React uses a virtual DOM and JSX syntax for creating components.
+2. Angular has a system of directives and two-way data binding.
+3. Vue offers a reactivity system and template-based components.
+4. Web Components, used with tools like Lit or Stencil, work across different frameworks.
+
+Each of these frameworks has its own way of implementing components, but they all aim to make UI development more organized and efficient.
 -->
 
 
@@ -1037,7 +1125,16 @@ Framework-agnostic
 - **CSS Isolation**: Avoids styling collisions by scoping styles to individual components, promoting maintainable and scalable code.
 
 <!--
+CSS Modules is a technique that helps solve many of the CSS problems we discussed earlier:
+
+1. It automatically creates unique class names, avoiding global conflicts.
+2. Styles are scoped to specific components by default.
+3. You can easily combine styles from different modules.
+4. It prevents styling collisions between components.
+
+CSS Modules make it easier to write maintainable CSS in large projects by keeping styles isolated to their components.
 -->
+
 
 ## CSS-in-JS: Dynamic Styling
 { .numbered-list .title-08 }
@@ -1051,9 +1148,25 @@ Framework-agnostic
 - ### Stitches
   Near-zero runtime, lightweight, focus on architecture.
 
+<!--
+CSS-in-JS is another approach to styling components. Here are some popular tools:
+
+1. Styled-components: Let you write CSS directly in your JavaScript.
+2. Emotion: Supports both string and object styles.
+3. JSS: Defines CSS as JavaScript objects, often used with React.
+4. Stitches: Focuses on performance and architecture.
+
+These tools bring CSS closer to your component logic, making it easier to create dynamic, scoped styles.
+-->
+
+
+## From technology to a system
+{ .slide--shout }
 
 <!--
+Now that we understand component-driven development, let's take it a step further. We're going to look at how to create a complete system for designing and developing user interfaces.
 -->
+
 
 ## Best Practices for Modular Design
 { .title-08 }
@@ -1063,13 +1176,13 @@ Framework-agnostic
 - **Naming Conventions**: Maintain consistent and descriptive naming for components and props.
 
 <!--
--->
+When designing components, keep these best practices in mind:
 
+1. Single Responsibility: Each component should do one thing well.
+2. Composability: Design components that work well together to build complex UIs.
+3. Consistent Naming: Use clear, descriptive names for components and their properties.
 
-## From technology to a system
-{ .slide--shout }
-
-<!--
+Following these practices will help you create a more organized, maintainable component system.
 -->
 
 
@@ -1089,6 +1202,9 @@ Framework-agnostic
 `}</style>
 
 <!--
+Think of a car. It's not just a collection of random parts - it's a carefully designed system where each part works together. 
+
+User interfaces are similar. We need a systematic approach to ensure all parts of our interface work well together. This is where design systems come in.
 -->
 
 
@@ -1096,7 +1212,9 @@ Framework-agnostic
 { .slide--shout .slide--primary }
 
 <!--
+Now, let's dive into design systems. A design system is a complete set of standards for designing and developing user interfaces. It's like a recipe book for creating consistent, efficient UIs.
 -->
+
 
 ## Diagram 1
 { .no-title .vocabulary-diagram }
@@ -1195,6 +1313,11 @@ Design systems are the foundation of consistent user interfaces. They provide re
 `}</style>
 
 <!--
+Here's a key definition to remember:
+
+"Design systems" is a systematic approach for creating, implementing, and maintaining user interfaces.
+
+This means it's not just a set of components or guidelines. It's a complete way of thinking about and managing UI design and development. It helps teams create consistent, efficient, and user-friendly interfaces across large projects or multiple products.
 -->
 
 
@@ -1252,17 +1375,14 @@ Design systems are the foundation of consistent user interfaces. They provide re
 `}</style>
 
 <!--
+Let's break down the main parts of a design system:
 
-v8 s2:
-"What is a Design System?
-Reusable Components
-A collection of UI elements like buttons, forms, and cards that can be used across multiple projects and platforms.
-Design Patterns
-Standardized solutions to common design problems, ensuring consistency in user interactions and layouts.
-Guidelines
-Clear instructions on how to use components and patterns, including best practices for accessibility and usability.
-Single Source of Truth
-A centralized resource that serves as the definitive reference for all design and development decisions within an organization."
+1. Design Tokens: These are the basic elements like colors, fonts, and spacing. They're the building blocks of your design.
+2. UI Components: These are reusable interface elements like buttons, forms, and cards. They're built using design tokens.
+3. Patterns: These are common solutions for layouts and interactions. They show how to use components together.
+4. Guidelines: These are the rules for using everything in the system. They ensure consistency and good practices.
+
+Together, these components create a complete toolkit for designing and building user interfaces.
 -->
 
 
@@ -1332,7 +1452,11 @@ A centralized resource that serves as the definitive reference for all design an
 `}</style>
 
 <!--
-TODO: Explain why consitency is important
+Look at these buttons. They look similar, but do they work the same way? This is a common problem in large projects without a design system.
+
+Without a system, different teams might create buttons that look alike but behave differently. This can confuse users and make the interface inconsistent.
+
+A design system helps solve this by providing a standard set of components that look and function consistently across the entire product or multiple products.
 -->
 
 
@@ -1352,8 +1476,13 @@ A set of font families, sizes, weights, and line heights that define the textual
 Standardized units of measurement for margins, padding, and layout grids. Consistent spacing ensures proper alignment and visual rhythm throughout the interface.
 
 <!--
-<Cover src="slides/v8-4.png" alt=""/>
+Design tokens are the smallest elements of a design system. They include:
 
+1. Colors: A set palette for the entire system, including main colors and variations.
+2. Typography: Font families, sizes, and styles for different text elements.
+3. Spacing: Standard measurements for margins, padding, and layout grids.
+
+These tokens ensure consistency across all parts of your interface. By using tokens, you can easily update the entire look of your product by changing just a few basic values.
 -->
 
 
@@ -1424,10 +1553,17 @@ Standardized units of measurement for margins, padding, and layout grids. Consis
 }
 `}</style>
 
-
 <!--
-<Cover src="slides/v8-5.png" alt=""/>
+UI components are the reusable parts of your interface. They include:
+
+1. Buttons: For user actions and navigation.
+2. Forms: For data input and submission.
+3. Cards: For displaying related information in a compact way.
+4. Navigation: Menus and other elements for moving around the app.
+
+These components are built using design tokens, ensuring they all fit together visually. They save time and maintain consistency across your product.
 -->
+
 
 ## Patterns: Solving Common UI Challenges
 { .numbered-list .title-06 .text-06 .patterns }
@@ -1454,22 +1590,17 @@ padding-right: 20em;
 
 `}</style>
 
-
 <!--
+Patterns are larger structures made from components. They include:
 
-<Cover src="slides/v8-6.png" alt=""/>
+1. Layout Structures: How to arrange elements on different screen sizes.
+2. Interaction Patterns: Common behaviors like hover effects or scrolling.
+3. Data Visualization: Guidelines for presenting complex information.
+4. Error Handling: How to show and resolve errors consistently.
 
-
-v8, s6:
-"Layout Structures
-Standardized arrangements of UI elements, such as grid systems and responsive layouts, that ensure consistency across different screen sizes and devices.
-Interaction Patterns
-Common user behaviors and expectations, like hover effects, drag-and-drop functionality, and scrolling behaviors, that are implemented consistently throughout the interface.
-Data Visualization
-Guidelines for presenting complex information in easily digestible formats, including charts, graphs, and infographics.
-Error Handling
-Consistent approaches to displaying and resolving errors, including form validation, error messages, and recovery options."
+Patterns help solve common design problems in a standard way across your product.
 -->
+
 
 ## Guidelines: Ensuring Proper Implementation
 { .numbered-list .title-06 .text-06 .guidelines }
@@ -1496,21 +1627,17 @@ padding-right: 20em;
 
 `}</style>
 
-
 <!--
+Guidelines are the rules for using your design system. They cover:
 
-<Cover src="slides/v8-7.png" alt=""/>
+1. Usage Rules: When and how to use specific components and patterns.
+2. Accessibility Standards: Ensuring your interface works for all users.
+3. Responsive Design Guidelines: How to adapt your design to different devices.
+4. Brand Voice and Tone: How to maintain a consistent brand personality in text.
 
-v8, s7:
-"Usage Rules
-Clear instructions on when and how to use specific components and patterns, including do's and don'ts to maintain consistency and effectiveness.
-Accessibility Standards
-Detailed requirements for ensuring that all UI elements are accessible to users with disabilities, including color contrast ratios, keyboard navigation, and screen reader compatibility.
-Responsive Design Guidelines
-Principles for adapting layouts and components to different screen sizes and devices, ensuring a consistent experience across platforms.
-Brand Voice and Tone
-Guidelines for maintaining a consistent brand personality in all textual elements, including microcopy, headings, and error messages."
+These guidelines help everyone use the design system correctly and consistently.
 -->
+
 
 ## Examples
 { .slide__examples }
@@ -1532,7 +1659,15 @@ Guidelines for maintaining a consistent brand personality in all textual element
 `}</style>
 
 <!--
-<Cover src="slides/v1-20.png" alt=""/>
+Here are some real-world examples of design systems:
+
+- Fluent by Microsoft
+- Atlassian Design System
+- Carbon by IBM
+- Material UI by Google
+- And many others
+
+Each of these systems shows how large companies use design systems to maintain consistency across their products. Take some time to explore these examples - they're great resources for learning about design systems in practice.
 -->
 
 
@@ -1560,25 +1695,14 @@ Guidelines for maintaining a consistent brand personality in all textual element
 `}</style>
 
 <!--
-
-<Cover src="slides/v8-9.png" alt=""/>
-
-v8, s9:
-"Design Systems Surf
-A curated collection of design systems from various companies and organizations. It provides a valuable resource for designers and developers looking to explore different approaches to design system creation and implementation.
-Design Systems Surf
-Component Gallery
-An extensive library of UI components from various design systems. It allows users to compare how different design systems approach common UI elements, providing inspiration and insights for component design.
-Component Gallery
-Defining Components
-A guide on how to effectively use design system catalogs when defining components for your own system. It provides strategies for analyzing existing solutions and adapting them to your specific needs.
-Defining Components Guide"
+These catalogs are great resources for exploring design systems.
 -->
 
 ## Design Systems Advantages
 { .slide--shout .slide--highlighted }
 
 <!--
+Now that we've explored what design systems are, let's talk about why they're so valuable. Design systems offer several key advantages in user interface development.
 -->
 
 
@@ -1590,19 +1714,16 @@ Defining Components Guide"
 - Unoptimal Organisation Structure
 
 <!--
+Before we dive into the advantages, let's look at a common problem design systems help solve:
 
-<Cover src="slides/v1-21.png" alt=""/>
+1. Different Tools: Designers and developers often use different software.
+2. Mental Models: They might think about the interface in different ways.
+3. Communication Issues: This can lead to misunderstandings between teams.
+4. Inefficient Structure: Traditional team setups can slow down work.
 
-v8, s11:
-"Different Tools and Workflows
-Designers often use tools like Sketch or Figma, while developers work in code editors, leading to potential discrepancies in how designs are interpreted and implemented.
-Inconsistent Interpretations = Mental models
-Without clear guidelines, developers may interpret design elements differently, resulting in variations from the original design intent.
-Communication Challenges
-Designers and developers may use different terminology or have different priorities, leading to misunderstandings and inefficiencies in the development process.
-Time Lost in Back-and-Forth
-Frequent clarifications and revisions due to misalignment can significantly slow down the development process and delay project timelines."
+These disconnects can cause delays, inconsistencies, and frustration in projects. Design systems help bridge these gaps.
 -->
+
 
 ## [Aligning UX designers and UI developers work with design systems](https://varya.me/design-systems/aligning-ux-designers-and-ui-developers/)
 { .slide--shout .thesis }
@@ -1630,10 +1751,18 @@ Master thesis in International Design Business Management (IDBM)<br/> by Varya S
 `}</style>
 
 <!--
+This slide refers to a master's thesis I wrote on this topic. The key idea is that design systems can help align the work of UX designers and UI developers. 
+
+By providing a shared language and set of tools, design systems help these two groups work together more effectively. This leads to more consistent, efficient, and user-friendly interfaces.
 -->
+
 
 ## What exactly changes?
 { .slide--shout }
+
+<!--
+Now, let's look at how design systems change the development process. We'll compare the old way of working to the new, design system approach.
+-->
 
 
 ## The old school way​
@@ -1641,11 +1770,31 @@ Master thesis in International Design Business Management (IDBM)<br/> by Varya S
 
 <Cover src="pictures/old-school.png" alt=""/>
 
+<!--
+This image shows the traditional way of designing and developing interfaces:
+
+1. Designers create static mockups.
+2. These are handed off to developers.
+3. Developers try to recreate the design in code.
+
+This process often leads to miscommunication and inconsistencies. The final product might not match the original design, and it's hard to maintain consistency across a large project.
+-->
+
 
 ## Dashed process​
 { .cover-w-80 .black }
 
 <Cover src="pictures/dashed-process.png" alt=""/>
+
+<!--
+This "dashed" process shows an improvement, but it's still not ideal:
+
+1. There's more back-and-forth between designers and developers.
+2. This can lead to better outcomes, but it's often slow and inefficient.
+3. There's still no systematic approach to ensure consistency.
+
+While better than the old school way, this process can still result in misalignments and inefficiencies.
+-->
 
 
 ## Products are systems
@@ -1655,11 +1804,27 @@ Master thesis in International Design Business Management (IDBM)<br/> by Varya S
 Products are systems rather than pages and as soon as we stop perceiving them as that, the better.
 </Blockquote>
 
+<!--
+This quote from Anna Debenham is crucial: "Products are systems rather than pages."
+
+This means we need to think about our products holistically, not as individual pages or features. This system thinking is at the heart of design systems. It helps us create more cohesive, consistent user experiences.
+-->
+
 
 ## UI composition
 { .cover-w-80 }
 
 <Cover src="pictures/bem-blocks.png" alt=""/>
+
+<!--
+This image shows how user interfaces are composed of smaller parts:
+
+1. We have basic elements like buttons and inputs.
+2. These combine into larger components like forms or cards.
+3. These components then make up full pages or features.
+
+This compositional approach is key to design systems. It allows us to build complex interfaces from simple, reusable parts.
+-->
 
 
 ## Creating UI with a design system​
@@ -1668,6 +1833,14 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 <Cover src="pictures/workflow-ds.png" alt=""/>
 
 <!--
+This diagram shows how design systems change the development process:
+
+1. The design system provides a shared library of components and patterns.
+2. Both designers and developers work from this shared system.
+3. This leads to faster, more consistent development.
+4. The final product is more cohesive and easier to maintain.
+
+This approach solves many of the problems we saw in the earlier processes.
 -->
 
 
@@ -1681,6 +1854,15 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 - ### Testing
 
 <!--
+Design systems use various tools at different stages:
+
+1. Design and Handoff: Tools for creating and sharing designs.
+2. Documenting: Ways to explain how to use the system.
+3. Tokens Streamline: Managing design tokens across the system.
+4. Development Playgrounds: Places to experiment with components.
+5. Testing: Ensuring components work correctly.
+
+These tools help teams create, use, and maintain design systems effectively.
 -->
 
 ## Tools examples
@@ -1698,51 +1880,15 @@ Products are systems rather than pages and as soon as we stop perceiving them as
   Chromatic, Testplane, Jest
 
 <!--
-1. ### Design and Handoff
-   - **Figma**: A cloud-based design tool for collaboration and handoff to developers.
-   - **Sketch**: A vector design tool, especially popular for UI/UX design.
-   - **Adobe XD**: A design and prototyping tool that integrates well with other Adobe products.
-   - **Zeplin**: Helps bridge the gap between designers and developers by providing detailed design specs for handoff.
+Here are some specific tools used in design systems:
 
-2. ### Documenting
-   - **Storybook**: A tool for developing and documenting UI components in isolation.
-   - **Zeroheight**: A design system documentation tool that integrates with Figma, Sketch, and Adobe XD.
-   - **Confluence**: A documentation platform that can be used to create and organize design system guidelines.
-   - **Notion**: A flexible tool for creating documentation, useful for both design systems and general team collaboration.
+1. Design and Handoff: Figma, Sketch, Zeplin
+2. Documenting: Storybook, Zeroheight, Confluence, Notion
+3. Tokens Streamline: Style Dictionary, Supernova
+4. Development Playgrounds: Storybook, Bit.dev
+5. Testing: Chromatic, Testplane, Jest
 
-3. ### Tokens Streamline
-   - **Style Dictionary**: A tool that helps maintain design tokens and transforms them into various formats for use in code.
-   - **Supernova**: A platform that converts design tokens into code for various platforms.
-   - **Specify**: A tool for synchronizing design tokens and assets between design and development.
-
-4. ### Development Playgrounds
-   - **CodeSandbox**: An online code editor that enables real-time development and sharing of UI components.
-   - **StackBlitz**: A development environment for quickly building, testing, and sharing design system components in real-time.
-   - **Storybook**: A widely-used tool for developing UI components in isolation and visualizing their different states.
-
-5. ### Testing
-   - **Jest**: A JavaScript testing framework that helps ensure design system components behave correctly.
-   - **Cypress**: A testing tool for end-to-end testing that can be used to ensure consistent user interfaces.
-   - **Chromatic**: A visual testing tool for Storybook that helps catch UI bugs by comparing component snapshots.
-   - **Percy**: A visual testing tool that captures screenshots and compares them for visual regressions.
-
-v8, s14:
-"Collaborative Design
-Figma allows multiple designers to work on the same file simultaneously, fostering real-time collaboration and faster iteration cycles. This feature is particularly useful for large teams working on complex design systems.
-Component Libraries
-Figma's robust component system enables the creation of reusable UI elements that can be easily updated across all instances. This ensures consistency throughout the design process and makes it easier to maintain large-scale design systems.
-Developer Handoff
-Figma provides developers with easy access to design specifications, including CSS properties, dimensions, and asset exports. This streamlines the handoff process and reduces the likelihood of misinterpretation during implementation."
-
-v8, s15:
-"Component Development
-Storybook provides an isolated environment for developing and testing UI components, allowing developers to focus on one component at a time without the complexities of the full application.
-3 Visual Testing
-Storybook integrates with visual regression testing tools, allowing teams to catch unintended changes to component appearance automatically during the development process.
-2 Interactive Documentation
-With Storybook, teams can create living documentation that showcases components in various states and configurations, making it easier for both designers and developers to understand and use the design system.
-4 Addon Ecosystem
-A rich ecosystem of addons extends Storybook's functionality, offering features like accessibility testing, responsive design tools, and design token integration."
+Each of these tools serves a specific purpose in the design system workflow. They help teams work more efficiently and maintain consistency.
 -->
 
 ## Business value of<br/>design system
@@ -1756,7 +1902,6 @@ A rich ecosystem of addons extends Storybook's functionality, offering features 
 - "Time to market" decreased​
 - Doing "real work"
 
-
 <style>{`
 
 .business-value.slide .cover {
@@ -1764,6 +1909,18 @@ A rich ecosystem of addons extends Storybook's functionality, offering features 
 }
 
 `}</style>
+
+<!--
+Design systems provide significant business benefits:
+
+1. Product recognizability: Consistent interfaces are more memorable.
+2. Faster design and development: Reusable components speed up work.
+3. Lower costs: Less time spent on redundant work.
+4. Faster time to market: Products can be built and updated more quickly.
+5. Focus on "real work": Less time on basic UI, more on unique features.
+
+These benefits make design systems valuable for businesses of all sizes.
+-->
 
 
 ## Getting mature
@@ -1810,6 +1967,16 @@ A rich ecosystem of addons extends Storybook's functionality, offering features 
 
 `}</style>
 
+<!--
+This diagram shows the maturity levels of design systems:
+
+1. As you move right, design systems become more sophisticated and valuable.
+2. The arrow points left, suggesting we should start simple and gradually improve.
+3. Even basic design systems can provide benefits.
+
+The goal is to continually improve your design system, making it more comprehensive and effective over time.
+-->
+
 
 ## Maturity
 { .no-title }
@@ -1819,6 +1986,13 @@ A rich ecosystem of addons extends Storybook's functionality, offering features 
 The very fact of design systems emerging as a new approach and a set of artifacts that affect the process of development demonstrates the subject of Organizational Innovation and Deployment.
 
 <!--
+Design systems represent a high level of maturity in UI development:
+
+1. They show organizational innovation in how interfaces are created.
+2. They affect the entire process of development, not just individual tasks.
+3. The most mature organizations use comprehensive design systems.
+
+Implementing a design system is a sign of a mature, efficient development process.
 -->
 
 
@@ -1826,6 +2000,7 @@ The very fact of design systems emerging as a new approach and a set of artifact
 { .slide--shout .slide--primary }
 
 <!--
+While design systems offer many benefits, they also come with their own challenges. Let's look at some advanced issues teams face with design systems.
 -->
 
 
@@ -1848,26 +2023,31 @@ The very fact of design systems emerging as a new approach and a set of artifact
 `}</style>
 
 <!--
+Here are some key challenges in managing design systems:
+
+1. Maintaining and Scaling: Keeping the system up-to-date as it grows.
+2. API Design: Creating intuitive ways for developers to use components.
+3. Balancing Standards and Customization: Making the system flexible yet consistent.
+4. Automations: Using tools to streamline design system processes.
+
+These challenges require ongoing attention and problem-solving as your design system evolves.
+-->
+
+<!--
 
 Comment from Arnaud:
 "In my experience, when you want to bridge the gap between design and engineering, the winning combo is to align the APIs and ensure that what designers have access to is also available in dev (and, of course, the other way around). 
 
 The second topic is the balance between configuration and customization, the best way to illustrate that is this amazing article from Spotify engineering team: https://engineering.atspotify.com/2023/05/multiple-layers-of-abstraction-in-design-systems/"
 
-
-v8, s27:
-"Automated Testing
-Implement comprehensive unit tests and visual regression tests to catch issues early and ensure consistent component behavior.
-CI/CD for Design Tokens
-Set up continuous integration and deployment pipelines to automatically update and distribute design tokens across all platforms.
-Documentation Generation
-Use tools that automatically generate and update documentation from code comments and component metadata.
-Linting for Consistency
-Implement linting tools to enforce coding standards and catch potential issues before they make it into production."
 -->
 
 ## Future Trends in Design Systems
 { .slide--shout .slide--highlighted }
+
+<!--
+Let's look ahead to see where design systems are going in the future. These trends will shape how we create and use design systems in the coming years.
+-->
 
 ## Future Trends in Design Systems
 { .numbered-list }
@@ -1878,24 +2058,14 @@ Implement linting tools to enforce coding standards and catch potential issues b
 - ### Easier adoption in products
 
 <!--
+Here are some key trends to watch in design systems:
 
-1️⃣ More automation: I think we’ll see more routine tasks being handled by algorithms. Not necessarily AI, but tools and plugins that simplify the “monkey work.”
+1. More automations: Tools will handle more routine tasks automatically.
+2. Dynamic theming: Interfaces will adapt more easily to user preferences.
+3. Smarter testing: We'll see better ways to ensure design and code stay in sync.
+4. Easier adoption: It will become simpler to implement design systems in products.
 
-2️⃣ Dynamic theming: Themes adjusting based on user preferences or the environment. It won’t be for every product, but it’s definitely a trend to watch. This ties into computational design tokens and a more systematic approach overall.
-
-3️⃣ Smarter testing: I’m hoping we get more advanced testing tools for both design and development — something like visual regression testing, but not as rigid, ensuring design and code stay in sync.
-
-4️⃣ Easier design system adoption: Especially for engineers because what they do faces the users. I’d love to see tools that automatically spot areas where a custom-built component could be replaced with a design system one. 
-
-<Cover src="slides/v1-29.png" alt=""/>
-
-v8, s28:
-"Automated Component Suggestions
-AI algorithms could analyze design patterns and suggest appropriate components or layouts based on the context and user needs, speeding up the design process.
-Design Pattern Recognition
-Machine learning models could identify common design patterns across an organization's products, helping to standardize and optimize the design system.
-Accessibility Improvements
-AI-powered tools could automatically detect and suggest fixes for accessibility issues, ensuring compliance with WCAG guidelines and improving overall usability."
+These trends will make design systems more powerful and easier to use, further improving UI development processes.
 -->
 
 
@@ -1915,8 +2085,6 @@ AI-powered tools could automatically detect and suggest fixes for accessibility 
   <br/>
   <span className="twitter"></span><a href="https://twitter.com/varya_en">@varya_en</a>
 </div>
-
-
 
 <style>{`
 
@@ -1989,3 +2157,13 @@ AI-powered tools could automatically detect and suggest fixes for accessibility 
 }
 `}
 </style>
+
+<!--
+Thank you all for your attention! I hope this lecture has given you a good overview of modern UI development and design systems. 
+
+Remember, you can find these slides online at the link shown. Feel free to review them as you continue learning about this topic.
+
+If you have any questions or want to learn more, you can reach me through LinkedIn, my website, or Twitter. Don't hesitate to get in touch!
+
+Thank you again, and good luck with your future projects!
+-->
