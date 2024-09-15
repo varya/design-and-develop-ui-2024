@@ -360,6 +360,33 @@ style: >
     background: none;
     color: black;
   }
+
+  .slide--3-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+    margin-bottom: 30px;
+  }
+
+  .slide--3-columns h2 {
+    -webkit-column-span: all;
+    column-span: all;
+    margin-bottom: 20px; /* Add some space after the h2 */
+  }
+
+  .slide--3-columns h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    break-before: column;
+  }
+
+  .slide--3-columns p {
+    margin-bottom: 20px;
+    break-inside: avoid;
+  }
 # Include footer content here or remove it
 footer: >
   <footer class="badge">
@@ -1317,42 +1344,11 @@ A set of font families, sizes, weights, and line heights that define the textual
 
 Standardized units of measurement for margins, padding, and layout grids. Consistent spacing ensures proper alignment and visual rhythm throughout the interface.
 
-
-<style>{`
-
-.slide--3-columns {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
-  -webkit-column-gap: 40px;
-  -moz-column-gap: 40px;
-  column-gap: 40px;
-  margin-bottom: 30px;
-}
-
-.slide--3-columns h2 {
-  -webkit-column-span: all;
-  column-span: all;
-  margin-bottom: 20px; /* Add some space after the h2 */
-}
-
-.slide--3-columns h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  break-before: column;
-}
-
-.slide--3-columns p {
-  margin-bottom: 20px;
-  break-inside: avoid;
-}
-
-`}</style>
-
 <!--
 <Cover src="slides/v8-4.png" alt=""/>
 
 -->
+
 
 ## UI Components: The Building Blocks of UI
 { .ui-components .title-06 }
@@ -1533,12 +1529,33 @@ Guidelines for maintaining a consistent brand personality in all textual element
 -->
 
 
-## Design System Catalogs: Inspiration and Resources
-{ .no-title }
+## Design System Catalogs
+{ .slide--3-columns .catalogs }
+
+### [Design Systems Surf](https://designsystems.surf/)
+
+### [Component Gallery](https://component.gallery/)
+
+### ["Complete" Design System](https://miro.com/app/board/uXjVPXCoofw=/)
+
+<style>{`
+
+.catalogs.slide {
+
+  padding-top: 9em;
+}
+
+.catalogs.slide a {
+  text-decoration: none;
+  background: none;
+}
+
+`}</style>
+
+<!--
 
 <Cover src="slides/v8-9.png" alt=""/>
 
-<!--
 v8, s9:
 "Design Systems Surf
 A curated collection of design systems from various companies and organizations. It provides a valuable resource for designers and developers looking to explore different approaches to design system creation and implementation.
@@ -1551,16 +1568,28 @@ A guide on how to effectively use design system catalogs when defining component
 Defining Components Guide"
 -->
 
-## Design-Development Disconnect
-{ .no-title }
+## Design Systems Advantages
+{ .slide--shout .slide--highlighted }
+
+<!--
+-->
+
+
+## Design-and-Development Disconnect
+
+- Different tools and Workflows
+- Mental Models
+- Communication Challenges
+- Unoptimal Organisation Structure
+
+<!--
 
 <Cover src="slides/v1-21.png" alt=""/>
 
-<!--
 v8, s11:
 "Different Tools and Workflows
 Designers often use tools like Sketch or Figma, while developers work in code editors, leading to potential discrepancies in how designs are interpreted and implemented.
-Inconsistent Interpretations
+Inconsistent Interpretations = Mental models
 Without clear guidelines, developers may interpret design elements differently, resulting in variations from the original design intent.
 Communication Challenges
 Designers and developers may use different terminology or have different priorities, leading to misunderstandings and inefficiencies in the development process.
@@ -1568,350 +1597,36 @@ Time Lost in Back-and-Forth
 Frequent clarifications and revisions due to misalignment can significantly slow down the development process and delay project timelines."
 -->
 
-## Challenges in Design-Development Collaboration
-{ .no-title }
+## [Aligning UX designers and UI developers work with design systems](https://varya.me/design-systems/aligning-ux-designers-and-ui-developers/)
+{ .slide--shout .thesis }
 
-<Cover src="slides/v1-22.png" alt=""/>
-
-<!--
-v8, s12:
-"Translating Static Designs to Interactive Components
-Developers must interpret static mockups and transform them into fully functional, interactive elements, which can lead to discrepancies in behavior and appearance.
-Maintaining Consistency Across Iterations
-As designs evolve, ensuring that all instances of a component are updated consistently across the project can be challenging without a centralized system.
-Handling Edge Cases and States
-Designers may not always account for all possible states of a component (e.g., loading, error, empty), leaving developers to make decisions that could deviate from the intended design.
-Ensuring Accessibility in Implementation
-Translating accessibility requirements from design to code can be complex, especially when not explicitly defined in the initial designs."
--->
-
-## Design Systems as a Collaborative Solution
-{ .no-title }
-
-<Cover src="slides/v1-23.png" alt=""/>
-
-<!--
-v8, s13:
-"Shared Language
-Design systems provide a common vocabulary for designers and developers, reducing misunderstandings and improving communication.
-Central Source of Truth
-A single, authoritative reference point ensures that all team members are working from the same set of standards and components.
-Living Documentation
-Up-to-date documentation of components and patterns helps maintain consistency and reduces the need for constant clarification.
-Streamlined Handoff
-Clear guidelines and pre-built components facilitate a smoother transition from design to development, reducing friction and errors."
--->
-
-
-
-## Tools for Design System Implementation
-
-- tools for design **and handoff**
-- tools for documenting
-- tokens streamline
-- development playgrounds
-- testing
-
-<!--
--->
-
-## Tools examples
-{ .no-title }
-
-<Cover src="slides/v1-24.png" alt=""/>
-
-<!--
--->
-
-## Tools for Design System Implementation: Figma
-{ .no-title }
-
-<Cover src="slides/v8-14.png" alt=""/>
-
-<!--
-v8, s14:
-"Collaborative Design
-Figma allows multiple designers to work on the same file simultaneously, fostering real-time collaboration and faster iteration cycles. This feature is particularly useful for large teams working on complex design systems.
-Component Libraries
-Figma's robust component system enables the creation of reusable UI elements that can be easily updated across all instances. This ensures consistency throughout the design process and makes it easier to maintain large-scale design systems.
-Developer Handoff
-Figma provides developers with easy access to design specifications, including CSS properties, dimensions, and asset exports. This streamlines the handoff process and reduces the likelihood of misinterpretation during implementation."
--->
-
-## Tools for Design System Implementation: Storybook
-{ .no-title }
-
-<Cover src="slides/v8-15.png" alt=""/>
-
-<!--
-v8, s15:
-"Component Development
-Storybook provides an isolated environment for developing and testing UI components, allowing developers to focus on one component at a time without the complexities of the full application.
-3 Visual Testing
-Storybook integrates with visual regression testing tools, allowing teams to catch unintended changes to component appearance automatically during the development process.
-2 Interactive Documentation
-With Storybook, teams can create living documentation that showcases components in various states and configurations, making it easier for both designers and developers to understand and use the design system.
-4 Addon Ecosystem
-A rich ecosystem of addons extends Storybook's functionality, offering features like accessibility testing, responsive design tools, and design token integration."
--->
-
-## Integrated Workflow: Bridging Design and Development
-{ .no-title }
-
-<Cover src="slides/v8-17.png" alt=""/>
-
-<!--
-TODO:
-- change from Zeplin and InVision to other tools
-- provide workflow from thesis
-
-
-v8, s17:
-"Design in Figma
-Designers create and iterate on UI components and patterns using Figma's collaborative features and component libraries.
-1
-Handoff via Zeplin
-Designs are exported to Zeplin for detailed specifications and style guide generation, facilitating clear communication with developers.
-2
-Develop in Storybook
-Developers use Storybook to build and test individual components in isolation, ensuring they match the design specifications.
-3
-Manage with InVision DSM
-4
-The entire design system, including documentation and assets, is centrally managed and distributed using InVision DSM."
--->
-
-## Accessibility in Design Systems
-{ .no-title }
-
-<Cover src="slides/v1-25.png" alt=""/>
-
-<!--
--->
-
-## Keyboard Navigation: Ensuring Universal Access
-{ .no-title }
-
-<Cover src="slides/v8-20.png" alt=""/>
-
-<!--
-v8, s20:
-"
-Importance of Keyboard Navigation
-Many users rely on keyboards or alternative input devices to navigate websites and applications, making keyboard accessibility crucial for inclusive design.
-Focus Management
-Ensure that all interactive elements can receive keyboard focus in a logical order, and that the current focus is visually apparent to users.
-Keyboard Shortcuts
-Implement consistent keyboard shortcuts for common actions, enhancing efficiency for power users and those who cannot use a mouse.
-Testing Keyboard Accessibility
-Regularly test your interface using only a keyboard to identify and address any navigation or interaction issues that may arise."
--->
-
-## Maintaining and Scaling Design Systems
-{ .no-title }
-
-<Cover src="slides/v1-27.png" alt=""/>
-
-<!--
--->
-
-## Versioning Strategies for Design Systems
-{ .no-title }
-
-<Cover src="slides/v8-23.png" alt=""/>
-
-<!--
-v8, s23:
-"Semantic Versioning
-Adopt a MAJOR.MINOR.PATCH versioning system. Increment MAJOR for incompatible API changes, MINOR for backwards- compatible new features, and PATCH for backwards-compatible bug fixes.
-Changelog Maintenance
-Keep a detailed changelog documenting all changes, additions, and deprecations in each version. This helps teams understand what's new and plan for upgrades.
-Deprecation Policies
-Establish clear policies for deprecating old components or features. Provide ample notice and migration paths to ensure smooth transitions for teams using the design system.
-Release Schedules
-Define a regular release schedule to provide predictability for teams relying on the design system. This could be monthly for minor updates and quarterly for major releases."
--->
-
-## Documentation Best Practices for Design Systems
-{ .no-title }
-
-<Cover src="slides/v8-24.png" alt=""/>
-
-<!--
-v8, s24:
-"Component Usage Guidelines
-Provide clear instructions on how and when to use each component, including examples of correct and incorrect usage.
-Code Examples
-Include working code snippets for each component, demonstrating how to implement them in various contexts and with different options.
-Design Principles
-Clearly articulate the overarching design principles that guide the system, helping teams understand the rationale behind design decisions.
-Accessibility Requirements
-Document specific accessibility considerations for each component, including ARIA roles, keyboard navigation, and color contrast requirements."
--->
-
-## Community Involvement in Design System Development
-{ .no-title }
-
-<Cover src="slides/v8-25.png" alt=""/>
-
-<!--
-v8, s25:
-"Internal Feedback Channels
-Establish regular feedback sessions and surveys to gather input from designers and developers using the design system. This ensures the system evolves to meet the needs of its users.
-Open-Source Contributions
-For public design systems, consider opening up to community contributions. This can bring fresh perspectives and additional resources to the project.
-User Testing and Surveys
-Conduct regular user testing sessions and surveys to understand how end-users interact with products built using the design system. Use this feedback to inform future improvements.
-Team Workshops
-Organize cross-functional workshops to collaboratively solve design challenges and contribute to the evolution of the design system."
--->
-
-## Advanced challenges:
-
-- API
-- Balance between standartisation and customization
-- Autiomations
-
-<!--
-
-Comment from Arnaud:
-"In my experience, when you want to bridge the gap between design and engineering, the winning combo is to align the APIs and ensure that what designers have access to is also available in dev (and, of course, the other way around). 
-
-The second topic is the balance between configuration and customization, the best way to illustrate that is this amazing article from Spotify engineering team: https://engineering.atspotify.com/2023/05/multiple-layers-of-abstraction-in-design-systems/"
--->
-
-## Automation in Design Systems
-{ .no-title }
-
-<Cover src="slides/v1-28.png" alt=""/>
-
-<!--
-v8, s27:
-"Automated Testing
-Implement comprehensive unit tests and visual regression tests to catch issues early and ensure consistent component behavior.
-CI/CD for Design Tokens
-Set up continuous integration and deployment pipelines to automatically update and distribute design tokens across all platforms.
-Documentation Generation
-Use tools that automatically generate and update documentation from code comments and component metadata.
-Linting for Consistency
-Implement linting tools to enforce coding standards and catch potential issues before they make it into production."
--->
-
-## Future Trends in Design Systems
-{ .no-title }
-
-<Cover src="slides/v1-29.png" alt=""/>
-
-<!--
-v8, s28:
-"Automated Component Suggestions
-AI algorithms could analyze design patterns and suggest appropriate components or layouts based on the context and user needs, speeding up the design process.
-Design Pattern Recognition
-Machine learning models could identify common design patterns across an organization's products, helping to standardize and optimize the design system.
-Accessibility Improvements
-AI-powered tools could automatically detect and suggest fixes for accessibility issues, ensuring compliance with WCAG guidelines and improving overall usability."
--->
-
-## Q&A and Discussion
-
-<!--
--->
-
-
-
-## Ols slides below
-
-
-## Design language
-{ .no-title .design-language }
-
-<Cover src="pictures/design-language.png" alt=""/>
-
-##### Credits: Andrey Okonetchnikov, https://www.youtube.com/watch?v=sV4chQq-H7o 
-{ .credits }
+Master thesis in International Design Business Management (IDBM)<br/> by Varya Stepanova, Aalto University, 2021
 
 <style>{`
-.design-language .cover {
-  margin-top: -50px;
+
+.thesis.slide {
+  padding-bottom: 2em;
 }
-.design-language .credits {
-  font-size: 60%;
-  position: absolute;
-  bottom: 25px;
+
+.thesis.slide h2 {
+  line-height: 1.25em;
 }
+.thesis.slide p {
+  line-height: 1.25em;
+}
+
+.thesis.slide a {
+  text-decoration: none;
+  background: none;
+}
+
 `}</style>
 
-
-## Ugly house
-{ .no-title }
-
-<Cover src="pictures/ugly-house.jpg" alt=""/>
-
-## Nice house
-{ .no-title }
-
-<Cover src="pictures/nice-house.jpg" alt=""/>
-
-
-## Industry context
-
-### THOUSANDS
-of pages
-
-### UPDATES
-every week, or even every day
-
-### GROWING TEAMS
-of designers, developer, product people
-
-
-## Design and development paths
-
-- Libraries of components
-- Styleguide-drive development
-- Systematic design approaches
-- Design tools (Sketch, Figma)
-
-- ### Design Systems
-
-
-## Components and patterns
-{ .no-title .components-and-patterns }
-
-<Cover src="pictures/components-and-patterns.png" alt=""/>
-
-<style>{`
-  .components-and-patterns .cover {
-    width: 80%;
-  }
-`}</style>
-
-
-
-## Visual language
-{ .visual-language }
-
-<Cover src="pictures/visual-language.png" alt=""/>
-
-<style>{`
-  .visual-language .cover {
-    width: 80%;
-  }
-`}</style>
-
-## Literature review (2018)
-
-https://varya.me/blog/design-systems-review/
-
-
-## Design system is everyone's business​
-{ .cover-w-80 }
-
-<Cover src="pictures/for-me.png" alt=""/>
-
+<!--
+-->
 
 ## What exactly changes?
-{ .slide--shout .slide--primary }
+{ .slide--shout }
 
 
 ## The old school way​
@@ -1945,11 +1660,88 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 
 <Cover src="pictures/workflow-ds.png" alt=""/>
 
+<!--
+-->
 
-## Business value of design system
+
+## Tools for Design Systems
+{ .numbered-list }
+
+- ### Design and Handoff
+- ### Documenting
+- ### Tokens Streamline
+- ### Development Playgrounds
+- ### Testing
+
+<!--
+-->
+
+## Tools examples
+{ .no-title .numbered-list .text-08 }
+
+- ### Design and Handoff
+  Figma, Sketch, Zeplin
+- ### Documenting
+  Storybook, Zeroheight, Confluence, Notion
+- ### Tokens Streamline
+  Style Dictionary, Supernova
+- ### Development Playgrounds
+  Storybook, Bit.dev
+- ### Testing
+  Chromatic, Testplane, Jest
+
+<!--
+1. ### Design and Handoff
+   - **Figma**: A cloud-based design tool for collaboration and handoff to developers.
+   - **Sketch**: A vector design tool, especially popular for UI/UX design.
+   - **Adobe XD**: A design and prototyping tool that integrates well with other Adobe products.
+   - **Zeplin**: Helps bridge the gap between designers and developers by providing detailed design specs for handoff.
+
+2. ### Documenting
+   - **Storybook**: A tool for developing and documenting UI components in isolation.
+   - **Zeroheight**: A design system documentation tool that integrates with Figma, Sketch, and Adobe XD.
+   - **Confluence**: A documentation platform that can be used to create and organize design system guidelines.
+   - **Notion**: A flexible tool for creating documentation, useful for both design systems and general team collaboration.
+
+3. ### Tokens Streamline
+   - **Style Dictionary**: A tool that helps maintain design tokens and transforms them into various formats for use in code.
+   - **Supernova**: A platform that converts design tokens into code for various platforms.
+   - **Specify**: A tool for synchronizing design tokens and assets between design and development.
+
+4. ### Development Playgrounds
+   - **CodeSandbox**: An online code editor that enables real-time development and sharing of UI components.
+   - **StackBlitz**: A development environment for quickly building, testing, and sharing design system components in real-time.
+   - **Storybook**: A widely-used tool for developing UI components in isolation and visualizing their different states.
+
+5. ### Testing
+   - **Jest**: A JavaScript testing framework that helps ensure design system components behave correctly.
+   - **Cypress**: A testing tool for end-to-end testing that can be used to ensure consistent user interfaces.
+   - **Chromatic**: A visual testing tool for Storybook that helps catch UI bugs by comparing component snapshots.
+   - **Percy**: A visual testing tool that captures screenshots and compares them for visual regressions.
+
+v8, s14:
+"Collaborative Design
+Figma allows multiple designers to work on the same file simultaneously, fostering real-time collaboration and faster iteration cycles. This feature is particularly useful for large teams working on complex design systems.
+Component Libraries
+Figma's robust component system enables the creation of reusable UI elements that can be easily updated across all instances. This ensures consistency throughout the design process and makes it easier to maintain large-scale design systems.
+Developer Handoff
+Figma provides developers with easy access to design specifications, including CSS properties, dimensions, and asset exports. This streamlines the handoff process and reduces the likelihood of misinterpretation during implementation."
+
+v8, s15:
+"Component Development
+Storybook provides an isolated environment for developing and testing UI components, allowing developers to focus on one component at a time without the complexities of the full application.
+3 Visual Testing
+Storybook integrates with visual regression testing tools, allowing teams to catch unintended changes to component appearance automatically during the development process.
+2 Interactive Documentation
+With Storybook, teams can create living documentation that showcases components in various states and configurations, making it easier for both designers and developers to understand and use the design system.
+4 Addon Ecosystem
+A rich ecosystem of addons extends Storybook's functionality, offering features like accessibility testing, responsive design tools, and design token integration."
+-->
+
+## Business value of<br/>design system
 { .business-value }
 
-<Cover src="pictures/money.jpg" alt=""/>
+![](pictures/money.jpg){: .cover .cover--right }
 
 - Product recognizability​
 - Faster design and development​
@@ -1960,8 +1752,8 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 
 <style>{`
 
-.business-value .cover {
-  opacity: 0.25;
+.business-value.slide .cover {
+  left: 60%;
 }
 
 `}</style>
@@ -2019,24 +1811,85 @@ Products are systems rather than pages and as soon as we stop perceiving them as
 
 The very fact of design systems emerging as a new approach and a set of artifacts that affect the process of development demonstrates the subject of Organizational Innovation and Deployment.
 
-
-## Technologies
-
-- React
-- Web Components
-- Vue
-- Angular
-
-## Styling Technologies
-
-- styled-components
-- Stiches
-- Tailwind etc
+<!--
+-->
 
 
-## "Complete" design system
+## Design Systems Advanced Challenges
+{ .slide--shout .slide--primary }
 
-https://miro.com/app/board/uXjVPXCoofw=/
+<!--
+-->
+
+
+## Advanced challenges
+{ .block-list .advanced-challenges .title-08 }
+
+![](pictures/code.jpg){: .cover .cover--right }
+
+- ### Maintaining and Scaling Design Systems
+- ### API
+- ### Balance between standartisation and customization
+- ### Autiomations
+
+<style>{`
+
+.advanced-challenges.slide {
+  padding-right: 18em;
+}
+
+`}</style>
+
+<!--
+
+Comment from Arnaud:
+"In my experience, when you want to bridge the gap between design and engineering, the winning combo is to align the APIs and ensure that what designers have access to is also available in dev (and, of course, the other way around). 
+
+The second topic is the balance between configuration and customization, the best way to illustrate that is this amazing article from Spotify engineering team: https://engineering.atspotify.com/2023/05/multiple-layers-of-abstraction-in-design-systems/"
+
+
+v8, s27:
+"Automated Testing
+Implement comprehensive unit tests and visual regression tests to catch issues early and ensure consistent component behavior.
+CI/CD for Design Tokens
+Set up continuous integration and deployment pipelines to automatically update and distribute design tokens across all platforms.
+Documentation Generation
+Use tools that automatically generate and update documentation from code comments and component metadata.
+Linting for Consistency
+Implement linting tools to enforce coding standards and catch potential issues before they make it into production."
+-->
+
+## Future Trends in Design Systems
+{ .slide--shout .slide--highlighted }
+
+## Future Trends in Design Systems
+{ .numbered-list }
+
+- ### More automations
+- ### Dynamic theming
+- ### Smarter testing
+- ### Easier adoption in products
+
+<!--
+
+1️⃣ More automation: I think we’ll see more routine tasks being handled by algorithms. Not necessarily AI, but tools and plugins that simplify the “monkey work.”
+
+2️⃣ Dynamic theming: Themes adjusting based on user preferences or the environment. It won’t be for every product, but it’s definitely a trend to watch. This ties into computational design tokens and a more systematic approach overall.
+
+3️⃣ Smarter testing: I’m hoping we get more advanced testing tools for both design and development — something like visual regression testing, but not as rigid, ensuring design and code stay in sync.
+
+4️⃣ Easier design system adoption: Especially for engineers because what they do faces the users. I’d love to see tools that automatically spot areas where a custom-built component could be replaced with a design system one. 
+
+<Cover src="slides/v1-29.png" alt=""/>
+
+v8, s28:
+"Automated Component Suggestions
+AI algorithms could analyze design patterns and suggest appropriate components or layouts based on the context and user needs, speeding up the design process.
+Design Pattern Recognition
+Machine learning models could identify common design patterns across an organization's products, helping to standardize and optimize the design system.
+Accessibility Improvements
+AI-powered tools could automatically detect and suggest fixes for accessibility issues, ensuring compliance with WCAG guidelines and improving overall usability."
+-->
 
 
 ## Thank you
