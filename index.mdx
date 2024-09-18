@@ -454,7 +454,7 @@ meta:
 `}</style>
 
 <!--
-Welcome, everyone! Today we're going to talk about designing and developing user interfaces in 2024. We'll explore modern approaches to creating consistent, efficient, and user-friendly interfaces. This lecture will help you understand the challenges of building large-scale projects and introduce you to the concept of design systems.
+Welcome, everyone! Today we're going to talk about designing and developing user interfaces in 2024. This lecture will help you understand the challenges of building large-scale projects and introduce you to the concept of design systems.
 -->
 
 
@@ -543,8 +543,8 @@ Welcome, everyone! Today we're going to talk about designing and developing user
 
 <!--
 
-My name is Varya. I work as an independent consultant, and design systems are my
-major focus. I started with libraries of components about 15 years ago,
+My name is Varya. I work as an independent consultant on design systems with
+major focus on frontend development. I started with libraries of components about 15 years ago,
 before the term "design systems" even emerged.
 
 By that time, my own understanding and the community's was more technical.
@@ -557,7 +557,7 @@ designers and developers, product people and business people. In the meanwhile
 I got a design education that helped me to see the picture at scale.
 
 Nowadays, even though I am still doing a lot of hands-on and architectural frontend
-work related to the design systems, I shift to engineering&project management, educating,
+work related to the design systems, I shift to engineering & project management, educating,
 and enganging people.
 
 -->
@@ -575,7 +575,7 @@ Here's what we'll cover in today's lecture:
 1. We'll start by looking at the challenges that come with large-scale projects.
 2. Then, we'll discuss CSS and JavaScript, focusing on the tricky parts when working on big projects.
 3. Next, we'll explore component-driven development, a modern approach to building interfaces.
-4. Finally, we'll dive into design systems, which bring all these concepts together.
+4. Finally, we'll dive into design systems, which is the next step.
 
 Let's get started!
 -->
@@ -607,7 +607,7 @@ These challenges are why we need better ways to design and develop user interfac
 { .slide--shout .slide--highlighted }
 
 <!--
-Now, let's talk about CSS. Many developers think CSS is easy, but it can be tricky, especially in big projects. Let's look at some common CSS challenges.
+Let's talk about CSS. Many developers think CSS is easy, but it can be tricky, especially in big projects. Let's look at some common CSS challenges.
 -->
 
 
@@ -621,7 +621,7 @@ This meme perfectly shows how CSS can be unpredictable. You might think you're b
 -->
 
 
-## Is this good?
+## Anything wrong?
 
 ```css
 H1 { color: blue }
@@ -635,33 +635,32 @@ A:active IMG { border: 2px solid lime }
 Now look at this code. Do you see something strange? Any guess?
 Who would write their CSS like this?
 
-The problem is that CSS was created to make text bold and links underlined. It ideally suited
-solving these problems. In many websites developers still use CSS like.
+Actually this code is still perfect. But it is from [CSS level 1 specification](http://www.w3.org/TR/CSS1/). It is
+very simple, was recommended in 1996..
 
-Actually this code from [CSS level 1 specification](http://www.w3.org/TR/CSS1/). It is
-very simple, was recommended in 1996. Time passed and we met new chalenges.
+The problem is that CSS was created to make text bold and links underlined. It ideally suited
+solving these problems. But time passed and we met new chalenges.
+
 -->
 
 
 ## What makes CSS hard?
 
-<ul>
-  <li>Vertical centering</li>
-  <li>Equal height columns</li>
-  <li>Browser inconsistencies</li>
-  <li className="next">Unobvious tricks</li>
-</ul>
+- Vertical centering
+- Equal height columns
+- Browser inconsistencies
+- Unobvious tricks
 
 <!--
-Before we decide what is wrong with that peice, let's guess what is hard in CSS.
 
-When ppl are asked, the repson is usually
+When ppl are asked what is challenging with CSS, they usually answer
 - vertical centing
 - making columns of equial height
 - browers render CSS differently, so it takes special knowledge and work to make the interface consistent
 - many solutions are unobvious tricks which needed to be memorized
 
 But these aren't the real challenges. You can easily find solutions for these online. Let's look at the actual difficult parts of CSS.
+
 -->
 
 
@@ -674,12 +673,14 @@ But these aren't the real challenges. You can easily find solutions for these on
 * Removing unused code
 
 <!--
+
 The real hard problems of CSS are here:
-- No scoping. Everything is CSS is global.
+- No scoping. Everything in CSS is global.
 - Specificity conflicts. I'll explain in detal later.
 - Non-deterministic matches which naturally result from declarativeness of CSS language
 - Dependency management
 - Removing unused code
+
 -->
 
 
@@ -700,7 +701,7 @@ One big problem with CSS is that it's global. This means that any CSS you write 
 The first rule affects all links on the site.
 The second rule changes links in lists.
 
-This global nature makes it hard to write CSS for specific parts of your site without accidentally changing other parts. It's especially tricky when you're working on a library or code that will be used on different websites.
+This global nature makes it hard to write CSS for specific parts of your site without accidentally changing other parts. It's especially tricky when you're working on a large-scale projects.
 -->
 
 
@@ -792,7 +793,7 @@ body #home-menu ul li a {
 {: .code--size--m }
 
 <!--
-This is what we call "specificity hell." It's when you have to write increasingly complex selectors just to apply simple styles. 
+This is what we call "specificity hell." It's when you have to write complex selectors just to apply simple styles. 
 
 Look at these examples - they're all trying to change the color of a link. This kind of CSS is hard to maintain and understand. It's a common problem when working with large CSS frameworks or in big teams.
 -->
@@ -804,7 +805,7 @@ Look at these examples - they're all trying to change the color of a link. This 
 ![](pictures/blinds-meme.gif)
 
 <!--
-This meme perfectly captures how frustrating CSS specificity can be! Sometimes, no matter what you do, your styles just won't apply. It feels like you're fighting against the CSS itself. This is why we need better ways to organize our CSS in large projects.
+This meme perfectly captures how frustrating CSS specificity can be! Sometimes, no matter what you do, your styles just won't apply. It feels like you're fighting against the CSS itself. 
 -->
 
 
@@ -819,7 +820,7 @@ This meme perfectly captures how frustrating CSS specificity can be! Sometimes, 
 <!--
 Here's another tricky part of CSS. This selector, `#content div div`, might seem straightforward, but it can match many different elements in your HTML. 
 
-When writing CSS, you provide criterias for the nodes to whihc this CSS should be applied. If we make an analogy with writing and address on an envelop, deterministic approach would be to write as we usually do: Konemiehentie 2, Espoo, Finland. While with non-deterministic approach — as wwe do in CSS — we write "a house on a small street with a green tree near it and a see in 2 blocks".
+When writing CSS, you provide criterias for the nodes which this CSS should be applied to. If we make an analogy with writing and address on an envelop, deterministic approach would be to write as we usually do: Konemiehentie 2, Espoo, Finland. While with non-deterministic approach — as we do in CSS — we write "a house on a small street with a green tree near it and a sea in 2 blocks".
 
 As your project grows and changes, you can't always predict which elements this CSS will affect. This makes it hard to maintain and update your styles without breaking things unexpectedly.
 -->
@@ -831,7 +832,7 @@ As your project grows and changes, you can't always predict which elements this 
 ![](pictures/doctor-meme.gif)
 
 <!--
-This meme shows how CSS can sometimes feel like a guessing game. You might think you know what your CSS will do, but then it surprises you! This unpredictability is why we need more structured approaches to CSS in large projects.
+This meme shows how CSS can sometimes feel like a guessing game. You might think you know what your CSS will do, but then it surprises you!
 -->
 
 
@@ -971,11 +972,10 @@ This is!
 <!--
 Let's sum up what we've learned about CSS challenges:
 
-On the left, we see simple CSS properties. These aren't the hard part of CSS. You can easily learn how to make text bold or change colors.
+On the left, we see the CSS properties. These aren't the hard part of CSS. You can easily learn how to make text bold or change colors.
 
-On the right, we see the selector. This is where CSS gets tricky. Deciding how to structure your selectors, managing specificity, and ensuring your styles apply where you want (and only where you want) - these are the real challenges in CSS.
+On the right, we see the selector. This is where CSS gets tricky. Deciding how to structure your selectors and ensuring your styles apply where you want (and only where you want) - these are the real challenges in CSS.
 
-Understanding these challenges is the first step to writing better, more manageable CSS in large projects.
 -->
 
 
@@ -1031,7 +1031,6 @@ Maintaining large JavaScript projects can be a real headache:
 3. Similar components start to differ over time, creating inconsistencies.
 4. As the project grows, it becomes harder and harder to add new features.
 
-These problems show why we need a more structured approach to building user interfaces.
 -->
 
 
@@ -1063,7 +1062,6 @@ Component-driven development is a way of building user interfaces by breaking th
 3. This approach helps keep designs consistent across the application.
 4. It's easier to update and fix bugs because each component is self-contained.
 
-This method helps solve many of the problems we saw with traditional CSS and JavaScript development.
 -->
 
 ## Benefits of Component-Driven Development
